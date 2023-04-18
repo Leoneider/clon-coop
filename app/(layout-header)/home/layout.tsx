@@ -1,4 +1,5 @@
-import { Footer } from "@/app/components";
+import { Footer, Header } from "@/app/components";
+import cardLayoutStyles from "./information-layout.module.css";
 
 export const metadata = {
   title: "Next.js",
@@ -12,7 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <h1>BIENVENIDO AL LAYOUT DE HEADER</h1>
+      <Header />
+      <div className={`${cardLayoutStyles.informationLayout}`}>
+        <p className="bg-orange-500">LEONEIDER</p>
+      </div>
+
       <div>{children}</div>
       <Footer />
     </>
