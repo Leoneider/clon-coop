@@ -1,9 +1,9 @@
-import { Footer } from "./components";
+import { Footer, Header } from "./components";
 
 function App() {
   return (
     <>
-      <div>Pagina principal</div>
+      <Header />
 
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/app/components";
+import { Header } from "@/app/components";
 import cardLayoutStyles from "./information-layout.module.css";
 
 export const metadata = {
@@ -19,7 +19,6 @@ export default function RootLayout({
       </div>
 
       <div>{children}</div>
-      <Footer />
     </>
   );
 }

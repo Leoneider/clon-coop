@@ -1,8 +1,9 @@
 function Home() {
   return (
     <>
-      <a href="#">HOLA</a>
-      <div>Bienvenidos al Home!</div>
+      <div className="container mx-auto px-4">
+        <div>Bienvenidos al Home!</div>
+      </div>
     </>
   );
 }
