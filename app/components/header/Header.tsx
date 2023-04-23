@@ -1,12 +1,10 @@
 "use client";
-
-import { Button } from "@mui/material";
+import Example from "../carousel/Carousel";
 
 function Header() {
   return (
     <div className="h-screen w-full bg-cyan-800">
-      <Button variant="contained">Hello World</Button>
-      header
+      <Example />
     </div>
   );
 }

@@ -12,7 +12,7 @@ const links = [
 
 function Navbar() {
   return (
-    <nav className="bg-teal-200 w-full">
+    <nav className="w-full fixed z-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center py-4">
           <Image
@@ -21,7 +21,7 @@ function Navbar() {
             height={64}
             alt="Logo de la cooperativa"
           />
-          <ul className="flex flex-row gap-7 justify-center">
+          <ul className="flex flex-row gap-7 justify-center text-white">
             {links.map(({ name, href }) => (
               <li key={name}>
                 <Link href={href}> {name}</Link>
