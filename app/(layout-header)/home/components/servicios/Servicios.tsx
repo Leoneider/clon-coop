@@ -17,7 +17,10 @@ function Servicios() {
       <div className="container mx-auto px-4 py-12">
         <div className="flex justify-between">
           {servicios.map(({ name, href }) => (
-            <div key={name} className="w-60 text-center font-medium">
+            <div
+              key={name}
+              className="w-48 text-center font-medium bg-slate-50 p-4 rounded-md"
+            >
               <Image
                 src={href}
                 width={50}

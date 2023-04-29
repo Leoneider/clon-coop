@@ -1,4 +1,8 @@
-import { Servicios } from "./(layout-header)/home/components";
+import {
+  Beneficios,
+  Noticias,
+  Servicios,
+} from "./(layout-header)/home/components";
 import { Footer, Header } from "./components";
 
 function App() {
@@ -6,6 +10,8 @@ function App() {
     <>
       <Header />
       <Servicios />
+      <Noticias />
+      <Beneficios />
       <Footer />
     </>
   );
