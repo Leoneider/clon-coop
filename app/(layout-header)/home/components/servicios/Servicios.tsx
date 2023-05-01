@@ -15,7 +15,7 @@ function Servicios() {
   return (
     <>
       <div className="container mx-auto px-4 py-12">
-        <div className="flex justify-between">
+        <div className="flex justify-center gap-7 flex-wrap">
           {servicios.map(({ name, href }) => (
             <div
               key={name}

@@ -1,9 +1,10 @@
 import {
   Beneficios,
+  Entidades,
   Noticias,
   Servicios,
 } from "./(layout-header)/home/components";
-import { Footer, Header } from "./components";
+import { Header } from "./components";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Servicios />
       <Noticias />
       <Beneficios />
-      <Footer />
+      <Entidades />
     </>
   );
 }
