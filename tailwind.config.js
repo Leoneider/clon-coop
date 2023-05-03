@@ -5,7 +5,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: (theme) => ({
+        ...theme("colors"),
+        primary: "#16a34a",
+        secondary: "#a3e635",
+      }),
+      textColor: (theme) => ({
+        ...theme("colors"),
+        primary: "#16a34a",
+        secondary: "#a3e635",
+      }),
+    },
   },
   plugins: [],
 };

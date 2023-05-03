@@ -43,7 +43,8 @@ function Beneficios() {
           {beneficios.map(({ label, icon, imageFondo }) => (
             <div
               key={label}
-              className="bg-cover bg-center h-80 w-80 object-cover rounded-md relative"
+              className="bg-cover bg-center h-80 w-80 object-cover rounded-md relative 
+              transition ease-in-out delay-150 hover:-translate-y-4 duration-300"
               style={imageFondo}
             >
               <div className="absolute bottom-0 p-7 flex items-center">

@@ -15,7 +15,11 @@ function Entidades() {
       <div className="container mx-auto px-4 py-24">
         <div className="flex flex-wrap justify-center gap-4">
           {entidades.map((entidad) => (
-            <div key={entidad} className="relative h-32 w-56">
+            <div
+              key={entidad}
+              className="relative h-32 w-56 opacity-60 hover:opacity-100
+            transition ease-in-out delay-150 hover:-translate-y-2 duration-300"
+            >
               <Image
                 src={entidad}
                 alt="Logo de la cooperativa"
