@@ -19,16 +19,17 @@ function Servicios() {
           {servicios.map(({ name, href }) => (
             <div
               key={name}
-              className="w-48 text-center font-medium bg-slate-50 p-4 rounded-md"
+              className="w-48 text-center font-medium bg-slate-50 p-4 rounded-md text-green-900
+               hover:bg-green-900 hover:text-white transition duration-500 ease-in-out cursor-pointer"
             >
               <Image
                 src={href}
                 width={50}
                 height={50}
                 alt={name}
-                className="mx-auto"
+                className="mx-auto hover:animate-pulse"
               />
-              <h3 className="text-xl py-3 text-green-900">{name}</h3>
+              <h3 className="text-xl py-3">{name}</h3>
             </div>
           ))}
         </div>

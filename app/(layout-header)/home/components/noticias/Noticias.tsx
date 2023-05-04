@@ -22,10 +22,10 @@ function Noticias() {
 
           <div className="w-96 ml-14">
             <h2 className="text-left text-lime-500">Últimas Noticias</h2>
-            <h1 className="text-2xl font-semibold text-teal-950 pt-2">
+            <h1 className="text-2xl font-semibold text-teal-900 pt-2">
               Ganadores Concurso Crediservir Lovers
             </h1>
-            <p className="text-lg mt-4 text-teal-950">
+            <p className="text-lg mt-4 text-teal-900">
               Conozca los ganadores del Concurso Crediservir Lovers
             </p>
             <div className="columns-2 pt-4">

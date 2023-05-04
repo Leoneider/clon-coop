@@ -36,8 +36,8 @@ function Beneficios() {
   return (
     <>
       <div className="container mx-auto px-4 pt-16">
-        <h1 className="text-center font-bold text-2xl">
-          Más <span className="text-lime-400">Beneficios</span> para usted
+        <h1 className="text-center font-bold text-2xl text-teal-900">
+          Más <span className="text-secondary">Beneficios</span> para usted
         </h1>
         <div className="columns-3 pt-16">
           {beneficios.map(({ label, icon, imageFondo }) => (
