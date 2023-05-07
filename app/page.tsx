@@ -4,11 +4,12 @@ import {
   Noticias,
   Servicios,
 } from "./(layout-header)/home/components";
-import { Header } from "./components";
+import { Header, Navbar } from "./components";
 
 function App() {
   return (
     <>
+      <Navbar />
       <Header />
       <Servicios />
       <Noticias />

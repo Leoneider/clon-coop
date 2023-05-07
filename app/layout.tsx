@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import { Footer, Navbar } from "./components";
+import { Footer } from "./components";
 import "@/styles/globals.css";
 
 const poppins = Poppins({
@@ -23,7 +23,6 @@ export default function RootLayout({
     <>
       <html lang="es" className={poppins.className}>
         <body className="h-full">
-          <Navbar />
           {children}
           <Footer />
         </body>

@@ -15,22 +15,18 @@ const items = [
   },
 ];
 
-const Item = (props: any) => {
-  return (
-    <Image
-      src={props.item.img}
-      fill={true}
-      alt="Logo de la cooperativa"
-      className="object-cover"
-    />
-  );
-};
-
 function Example() {
   return (
-    <Carousel className="h-full w-full relative overflow-hidden">
+    <Carousel height="100vh">
       {items.map((item, i) => (
-        <Item key={i} item={item} />
+        <Image
+          key={i}
+          src={item.img}
+          fill={true}
+          alt="Logo de la cooperativa"
+          className="object-cover"
+          sizes="100vh"
+        />
       ))}
     </Carousel>
   );

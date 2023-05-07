@@ -19,7 +19,7 @@ function Servicios() {
           {servicios.map(({ name, href }) => (
             <div
               key={name}
-              className="w-48 text-center font-medium bg-slate-50 p-4 rounded-md text-green-900
+              className="w-48 relative text-center font-medium bg-slate-50 p-4 rounded-md text-green-900
                hover:bg-green-900 hover:text-white transition duration-500 ease-in-out cursor-pointer"
             >
               <Image
@@ -28,6 +28,7 @@ function Servicios() {
                 height={50}
                 alt={name}
                 className="mx-auto hover:animate-pulse"
+                sizes="50px"
               />
               <h3 className="text-xl py-3">{name}</h3>
             </div>
