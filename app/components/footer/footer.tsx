@@ -1,3 +1,6 @@
+"use client";
+import { Button } from "flowbite-react";
+
 function Footer() {
   return (
     <div className="bg-teal-100">
@@ -34,6 +37,7 @@ function Footer() {
             <p>Actualización de datos</p>
           </div>
         </div>
+        <Button>Click me</Button>
       </div>
     </div>
   );

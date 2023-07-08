@@ -2,19 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import HomeIcon from "@mui/icons-material/Home";
-// import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import SavingsIcon from "@mui/icons-material/Savings";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import Groups2Icon from "@mui/icons-material/Groups2";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 const links = [
-  { name: "Inicio", href: "/", icon: <HomeIcon /> },
+  { name: "Inicio", href: "/" },
   { name: "Asóciese", href: "/asociados", icon: <Groups2Icon /> },
-  { name: "Ahorros", href: "/ahorros", icon: <SavingsIcon /> },
-  { name: "Créditos", href: "/creditos", icon: <MonetizationOnIcon /> },
+  { name: "Ahorros", href: "/ahorros" },
+  { name: "Créditos", href: "/creditos" },
   {
     name: "Sucursal Virtual",
     href: "/sucrusal-virtual",
