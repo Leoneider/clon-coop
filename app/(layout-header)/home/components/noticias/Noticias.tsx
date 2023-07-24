@@ -5,6 +5,40 @@ import Button from "@mui/material/Button";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ButtonNoticias from "@/app/components/button/Button";
 
+export interface NoticiasProps {
+  title: string;
+  description: string;
+  image: string;
+  date: string;
+  href: string;
+}
+
+const noticias: NoticiasProps[] = [
+  {
+    title: "Ganadores Concurso Crediservir Luna",
+    description: "Conozca los ganadores del Concurso Crediservir Lovers",
+    image: "/noticias/img_0200.jpg",
+    date: "21 Ene, 2023",
+    href: "/",
+  },
+  {
+    title: "Ganadores Concurso Crediservir Lovers",
+    description: "Conozca los ganadores del Concurso Crediservir Lovers",
+    image: "/noticias/img_0200.jpg",
+    date: "21 Ene, 2023",
+    href: "/",
+  },
+  {
+    title: "Ganadores Concurso Crediservir Lovers",
+    description: "Conozca los ganadores del Concurso Crediservir Lovers",
+    image: "/noticias/img_0200.jpg",
+    date: "21 Ene, 2023",
+    href: "/",
+  },
+];
+
+let noticiaSeleccionada: NoticiasProps = noticias[0];
+
 function Noticias() {
   return (
     <>
@@ -12,7 +46,7 @@ function Noticias() {
         <div className="columns-2">
           <div className="flex justify-end">
             <Image
-              src="/noticias/img_0200.jpg"
+              src={noticiaSeleccionada.image}
               width={549}
               height={293}
               alt="Logo de la cooperativa"
@@ -21,13 +55,35 @@ function Noticias() {
           </div>
 
           <div className="w-96 ml-14">
-            <h2 className="text-left text-lime-500">Últimas Noticias</h2>
+            <div className="flex">
+              <h2 className="text-left text-lime-500">Últimas Noticias</h2>
+              <div className="flex gap-3 justify-center items-center grow">
+                <button
+                  type="button"
+                  className="w-2 h-2 bg-slate-300 rounded-full text-lime-500"
+                ></button>
+                <button
+                  type="button"
+                  className="w-2 h-2 bg-slate-300 rounded-full text-lime-500"
+                ></button>
+                <button
+                  type="button"
+                  className="w-2 h-2 bg-lime-300 rounded-full text-lime-500"
+                ></button>
+                <button
+                  type="button"
+                  className="w-2 h-2 bg-slate-300 rounded-full text-lime-500"
+                ></button>
+              </div>
+            </div>
+
             <h1 className="text-2xl font-semibold text-teal-900 pt-2">
-              Ganadores Concurso Crediservir Lovers
+              {noticiaSeleccionada.title}
             </h1>
             <p className="text-lg mt-4 text-teal-900">
-              Conozca los ganadores del Concurso Crediservir Lovers
+              {noticiaSeleccionada.description}
             </p>
+
             <div className="columns-2 pt-4">
               <div>
                 <Button
@@ -35,7 +91,7 @@ function Noticias() {
                   variant="text"
                   startIcon={<CalendarMonthIcon />}
                 >
-                  21 Ene, 2023
+                  {noticiaSeleccionada.date}
                 </Button>
               </div>
 
@@ -56,6 +112,7 @@ function Noticias() {
           <ButtonNoticias />
         </div>
       </div>
+      );
     </>
   );
 }
