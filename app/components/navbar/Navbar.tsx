@@ -2,19 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import HomeIcon from "@mui/icons-material/Home";
-// import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import SavingsIcon from "@mui/icons-material/Savings";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
-import Groups2Icon from "@mui/icons-material/Groups2";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 const links = [
-  { name: "Inicio", href: "/", icon: <HomeIcon /> },
-  { name: "Asóciese", href: "/asociados", icon: <Groups2Icon /> },
-  { name: "Ahorros", href: "/ahorros", icon: <SavingsIcon /> },
-  { name: "Créditos", href: "/creditos", icon: <MonetizationOnIcon /> },
+  { name: "Inicio", href: "/" },
+  { name: "Asóciese", href: "/asociados" },
+  { name: "Ahorros", href: "/ahorros" },
+  { name: "Créditos", href: "/creditos" },
   {
     name: "Sucursal Virtual",
     href: "/sucrusal-virtual",
@@ -30,22 +25,37 @@ const links = [
 function Navbar() {
   const divRef = useRef<HTMLDivElement>(null);
   const [backgroundColor, setBackgroundColor] = useState("");
+  const [logoImage, setLogoImage] = useState("");
+
+  const getTopElementPosition = (): number => {
+    const div = divRef.current?.parentElement;
+
+    if (!div) return 0;
+    const { y } = div.getBoundingClientRect();
+    return y;
+  };
+
+  const getChangeLogoNavBar = (y: number) => {
+    if (y) {
+      setLogoImage("/logo-vertical-coop-color.svg");
+    } else {
+      setLogoImage("/logo-vertical-coop.svg");
+    }
+  };
 
   const handleScroll = () => {
     const navHeight = divRef.current?.offsetHeight || 0;
-    const div = divRef.current?.parentElement;
 
-    if (!div) return;
-
-    const { y } = div.getBoundingClientRect();
+    const y = getTopElementPosition();
+    getChangeLogoNavBar(y);
     setBackgroundColor(
       Math.abs(y) >= navHeight ? "bg-slate-100 text-primary" : "text-white"
     );
   };
 
   useEffect(() => {
+    getChangeLogoNavBar(getTopElementPosition());
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -59,13 +69,14 @@ function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center py-4">
           <Image
-            src="/logo-coop-white.png"
-            width={246}
-            height={64}
+            src={logoImage}
+            width={183}
+            height={70}
             alt="Logo de la cooperativa"
             priority={true}
+            className="padding-0"
           />
-          <ul className="flex flex-row gap-7 justify-center ">
+          <ul className="flex flex-row gap-4 justify-center ">
             {links.map(({ name, href, icon }) => (
               <li
                 key={name}
