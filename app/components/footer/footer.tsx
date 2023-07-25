@@ -1,43 +1,70 @@
 "use client";
-import { Button } from "flowbite-react";
+
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 function Footer() {
   return (
     <div className="bg-teal-100">
-      <div className="container mx-auto px-4 py-24">
+      <div className="container mx-auto px-4 pt-24 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h1 className="font-bold text-xl">Contáctenos</h1>
-            <p>Línea atención (607) 569 44 44</p>
-            <p>Carrera 12 Nº 10-00 Centro Ocaña, Norte de Santander</p>
-            <p>notificaciones@crediservir.com</p>
+            <h1 className="font-semibold text-teal-900 text-xl mb-3">
+              Contáctenos
+            </h1>
+            <p className="mb-1">Línea atención (607) 569 44 44</p>
+            <p className="mb-1">
+              Carrera 12 Nº 10-00 Centro Ocaña, Norte de Santander
+            </p>
+            <p className="mb-1">notificaciones@crediservir.com</p>
           </div>
           <div>
-            <h1 className="font-bold text-xl">Corporativo</h1>
-            <p>Quiénes somos</p>
-            <p>Informes de Gestión</p>
-            <p>Gestión de Riesgos</p>
-            <p>Gestión Ambiental</p>
-            <p>Pensamiento Cooperativo</p>
+            <h1 className="font-semibold text-teal-900 text-xl mb-5">
+              Corporativo
+            </h1>
+            <p className="mb-1">Quiénes somos</p>
+            <p className="mb-1">Informes de Gestión</p>
+            <p className="mb-1">Gestión de Riesgos</p>
+            <p className="mb-1">Gestión Ambiental</p>
+            <p className="mb-1">Pensamiento Cooperativo</p>
           </div>
           <div>
-            <h1 className="font-bold text-xl">Enlaces de Interés</h1>
-            <p>Tasas Efectivas Anuales</p>
-            <p> Tarifas Productos y Servicios</p>
-            <p> Sistema Gestión de Calidad</p>
-            <p> Reconocimientos</p>
-            <p> Reconocimientos Fundación Crediservir</p>
-            <p> Documentos Institucionales</p>
+            <h1 className="font-semibold text-teal-900 text-xl mb-5">
+              Enlaces de Interés
+            </h1>
+            <p className="mb-1">Tasas Efectivas Anuales</p>
+            <p className="mb-1"> Tarifas Productos y Servicios</p>
+            <p className="mb-1"> Sistema Gestión de Calidad</p>
+            <p className="mb-1"> Reconocimientos</p>
+            <p className="mb-1"> Reconocimientos Fundación Crediservir</p>
+            <p className="mb-1"> Documentos Institucionales</p>
           </div>
           <div>
-            <h1 className="font-bold text-xl">Servicio al Asociado</h1>
-            <p> Información legal</p>
-            <p>Protección de Datos</p>
-            <p>S.A.C.</p>
-            <p>Actualización de datos</p>
+            <h1 className="font-semibold text-teal-900 text-xl mb-5">
+              Servicio al Asociado
+            </h1>
+            <p className="mb-1"> Información legal</p>
+            <p className="mb-1">Protección de Datos</p>
+            <p className="mb-1">S.A.C.</p>
+            <p className="mb-1">Actualización de datos</p>
           </div>
         </div>
-        <Button>Click me</Button>
+
+        <hr className="my-8 border-teal-500 opacity-20" />
+
+        <div className="w-full sm:flex sm:items-center sm:justify-between">
+          <div>
+            <small>© DevOps42 - 2023</small>
+          </div>
+          <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+            <FacebookIcon className="text-teal-900 text-4xl" />
+            <TwitterIcon className="text-teal-900 text-4xl" />
+            <InstagramIcon className="text-teal-900 text-4xl" />
+            <YouTubeIcon className="text-teal-900 text-4xl" />
+          </div>
+        </div>
       </div>
     </div>
   );
