@@ -54,18 +54,18 @@ const customTheme: CustomFlowbiteTheme["carousel"] = {
       on: "bg-green-600 dark:bg-gray-800",
     },
     base: "h-3 w-3 rounded-full",
-    wrapper: "absolute bottom-5 left-1/2 flex -translate-x-1/2 space-x-3",
+    wrapper: "absolute top-5 left-3/4 flex -translate-x-3/4 space-x-3",
   },
   item: {
     base: "absolute top-1/2 left-1/2 block w-full -translate-x-1/2 -translate-y-1/2",
-    wrapper: "w-full flex-shrink-0 transform cursor-grab snap-center",
+    wrapper: "w-full flex-shrink-0 transform snap-center",
   },
   control: {
     base: `inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30
-     group-hover:bg-white/50 group-focus:outline-none
-     group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 
-     dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 sm:h-10 sm:w-10`,
-    icon: "h-5 w-5 text-white dark:text-gray-800 sm:h-6 sm:w-6",
+    group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 
+    group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60
+    dark:group-focus:ring-gray-800/70 sm:h-10 sm:w-10`,
+    icon: "h-5 w-5 text-black dark:text-gray-800 sm:h-6 sm:w-6",
   },
   scrollContainer: {
     base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth rounded-lg",
@@ -76,8 +76,16 @@ const customTheme: CustomFlowbiteTheme["carousel"] = {
 function Noticias() {
   return (
     <>
-      <div className="container mx-auto px-4">
-        <Carousel theme={customTheme} slide={false} className="h-80">
+      <div className="container mx-auto px-4 left">
+        <h1 className="text-center font-bold text-2xl text-teal-900">
+          Últimas Noticias
+        </h1>
+        <Carousel
+          theme={customTheme}
+          slide={false}
+          className="h-80"
+          leftControl={<ArrowCircleRightIcon />}
+        >
           {noticias.map((noticia, idx) => (
             <div key={idx}>
               <div className="columns-2">

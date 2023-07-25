@@ -69,7 +69,7 @@ function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center py-4">
           <Image
-            src={logoImage}
+            src={logoImage || "/logo-vertical-coop.svg"}
             width={183}
             height={70}
             alt="Logo de la cooperativa"
