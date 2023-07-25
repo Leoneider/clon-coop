@@ -3,6 +3,8 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
 import { Carousel, CustomFlowbiteTheme } from "flowbite-react";
 
@@ -65,7 +67,7 @@ const customTheme: CustomFlowbiteTheme["carousel"] = {
     group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 
     group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60
     dark:group-focus:ring-gray-800/70 sm:h-10 sm:w-10`,
-    icon: "h-5 w-5 text-black dark:text-gray-800 sm:h-6 sm:w-6",
+    icon: "h-7 w-7 text-lime-500 dark:text-gray-800 sm:h-6 sm:w-6",
   },
   scrollContainer: {
     base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth rounded-lg",
@@ -77,14 +79,19 @@ function Noticias() {
   return (
     <>
       <div className="container mx-auto px-4 left">
-        <h1 className="text-center font-bold text-2xl text-teal-900">
+        <h1 className="text-center font-bold text-2xl text-teal-900 mb-10">
           Últimas Noticias
         </h1>
         <Carousel
           theme={customTheme}
           slide={false}
           className="h-80"
-          leftControl={<ArrowCircleRightIcon />}
+          leftControl={
+            <ArrowCircleLeftOutlinedIcon className="h-10 w-10 opacity-30 text-lime-500 group-hover:opacity-100" />
+          }
+          rightControl={
+            <ArrowCircleRightOutlinedIcon className="h-10 w-10 opacity-30 text-lime-500 group-hover:opacity-100" />
+          }
         >
           {noticias.map((noticia, idx) => (
             <div key={idx}>
