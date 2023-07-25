@@ -24,7 +24,8 @@ const links = [
 
 function Navbar() {
   const divRef = useRef<HTMLDivElement>(null);
-  const [backgroundColor, setBackgroundColor] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState("text-white");
+  const [shadowNav, setShadowNav] = useState("");
   const [logoImage, setLogoImage] = useState("");
 
   const getTopElementPosition = (): number => {
@@ -38,8 +39,10 @@ function Navbar() {
   const getChangeLogoNavBar = (y: number) => {
     if (y) {
       setLogoImage("/logo-vertical-coop-color.svg");
+      setShadowNav("shadow-lg");
     } else {
       setLogoImage("/logo-vertical-coop.svg");
+      setShadowNav("");
     }
   };
 
@@ -63,7 +66,7 @@ function Navbar() {
 
   return (
     <nav
-      className={`w-full fixed z-50 ${backgroundColor} transition ease-in-out delay-150 duration-300`}
+      className={`w-full fixed z-50 ${shadowNav} ${backgroundColor} transition ease-in-out delay-150 duration-300`}
       ref={divRef}
     >
       <div className="container mx-auto px-4">
