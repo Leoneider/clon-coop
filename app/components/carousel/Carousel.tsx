@@ -1,6 +1,6 @@
 import React from "react";
-import Carousel from "react-material-ui-carousel";
 import Image from "next/image";
+import { Carousel, CustomFlowbiteTheme } from "flowbite-react";
 
 const items = [
   {
@@ -15,18 +15,25 @@ const items = [
   },
 ];
 
+const customTheme: CustomFlowbiteTheme["carousel"] = {
+  scrollContainer: {
+    base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth",
+    snap: "snap-x",
+  },
+};
+
 function Example() {
   return (
-    <Carousel height="100vh">
+    <Carousel className="h-screen w-full" theme={customTheme}>
       {items.map((item, i) => (
-        <Image
-          key={i}
-          src={item.img}
-          fill={true}
-          alt="Logo de la cooperativa"
-          className="object-cover"
-          sizes="100vh"
-        />
+        <div key={i} className="h-full w-full">
+          <Image
+            alt={item.name}
+            src={item.img}
+            fill={true}
+            style={{ objectFit: "cover", borderRadius: "0px" }}
+          />
+        </div>
       ))}
     </Carousel>
   );

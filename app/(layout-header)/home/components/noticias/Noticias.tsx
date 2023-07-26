@@ -7,6 +7,7 @@ import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutl
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
 import { Carousel, CustomFlowbiteTheme } from "flowbite-react";
+import ButtonNoticias from "@/app/components/button/Button";
 
 export interface NoticiasProps {
   title: string;
@@ -140,6 +141,9 @@ function Noticias() {
             </div>
           ))}
         </Carousel>
+      </div>
+      <div className="grid place-items-center">
+        <ButtonNoticias />
       </div>
     </>
   );
