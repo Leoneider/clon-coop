@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
@@ -36,40 +36,35 @@ function Navbar({ scroll = false }) {
   const [shadowNav, setShadowNav] = useState(shadow);
   const [logoImage, setLogoImage] = useState(logoImg);
 
-  const divRef = useRef<HTMLDivElement>(null);
-  const getTopElementPosition = (): number => {
-    const div = divRef.current?.parentElement;
+  const navRef = useRef<HTMLDivElement>(null);
 
-    if (!div) return 0;
-    const { y } = div.getBoundingClientRect();
-    return y;
-  };
-
-  const getChangeLogoNavBar = (y: number) => {
-    if (y) {
+  const getChangeLogoNavBar = (y: number, navHeight: number) => {
+    if (Math.abs(y) >= navHeight) {
       setLogoImage("/logo-vertical-coop-color.svg");
       setShadowNav("shadow-lg");
+      setBackgroundColor("bg-slate-100 text-primary");
     } else {
       setLogoImage("/logo-vertical-coop.svg");
       setShadowNav("");
+      setBackgroundColor("text-white");
     }
   };
 
-  const handleScroll = () => {
-    const navHeight = divRef.current?.offsetHeight || 0;
-    const y = getTopElementPosition();
-    getChangeLogoNavBar(y);
-    setBackgroundColor(
-      Math.abs(y) >= navHeight ? "bg-slate-100 text-primary" : "text-white"
-    );
-  };
+  const handleScroll = useCallback(() => {
+    const currentElement = navRef.current;
+    const parent = currentElement?.parentElement;
+
+    if (parent) {
+      const y = parent.getBoundingClientRect().y;
+      const navHeight = navRef.current?.offsetHeight || 0;
+      getChangeLogoNavBar(y, navHeight);
+    }
+  }, []);
 
   useEffect(() => {
     if (scroll) {
-      getChangeLogoNavBar(getTopElementPosition());
       window.addEventListener("scroll", handleScroll);
     }
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -78,7 +73,7 @@ function Navbar({ scroll = false }) {
   return (
     <nav
       className={`w-full fixed z-50 ${shadowNav} ${backgroundColor} transition ease-in-out delay-150 duration-300`}
-      ref={divRef}
+      ref={navRef}
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center py-4">
