@@ -1,4 +1,9 @@
+export { default as Beneficios } from "./beneficios/Beneficios";
 export { default as Button } from "./button/Button";
+export { default as Carousel } from "./carousel/Carousel";
+export { default as Entidades } from "./entidades/Entidades";
 export { default as Footer } from "./footer/Footer";
 export { default as Header } from "./header/Header";
 export { default as Navbar } from "./navbar/Navbar";
+export { default as Noticias } from "./noticias/Noticias";
+export { default as Servicios } from "./servicios/Servicios";

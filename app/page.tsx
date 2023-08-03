@@ -1,15 +1,16 @@
 import {
+  Header,
+  Navbar,
   Beneficios,
   Entidades,
   Noticias,
   Servicios,
-} from "./(layout-header)/home/components";
-import { Header, Navbar } from "./components";
+} from "./components";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar scroll={true} />
       <Header />
       <Servicios />
       <Noticias />

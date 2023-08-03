@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function ButtonNoticias() {
   return (
     <>
@@ -8,7 +10,7 @@ function ButtonNoticias() {
                   hover:shadow rounded-full text-emerald-900 
                   font-semibold transition-colors ease-in-out"
       >
-        Ver Todas las Publicaciones
+        <Link href="/noticias"> Ver Todas las Publicaciones</Link>
       </button>
     </>
   );

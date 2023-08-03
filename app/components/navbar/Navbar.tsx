@@ -22,12 +22,21 @@ const links = [
   },
 ];
 
-function Navbar() {
-  const divRef = useRef<HTMLDivElement>(null);
-  const [backgroundColor, setBackgroundColor] = useState("text-white");
-  const [shadowNav, setShadowNav] = useState("");
-  const [logoImage, setLogoImage] = useState("");
+function Navbar({ scroll = false }) {
+  let textColor = "text-white";
+  let logoImg = "/logo-vertical-coop.svg";
+  let shadow = "";
+  if (!scroll) {
+    textColor = "bg-slate-100 text-primary";
+    logoImg = "/logo-vertical-coop-color.svg";
+    shadow = "shadow-lg";
+  }
 
+  const [backgroundColor, setBackgroundColor] = useState(textColor);
+  const [shadowNav, setShadowNav] = useState(shadow);
+  const [logoImage, setLogoImage] = useState(logoImg);
+
+  const divRef = useRef<HTMLDivElement>(null);
   const getTopElementPosition = (): number => {
     const div = divRef.current?.parentElement;
 
@@ -48,7 +57,6 @@ function Navbar() {
 
   const handleScroll = () => {
     const navHeight = divRef.current?.offsetHeight || 0;
-
     const y = getTopElementPosition();
     getChangeLogoNavBar(y);
     setBackgroundColor(
@@ -57,12 +65,15 @@ function Navbar() {
   };
 
   useEffect(() => {
-    getChangeLogoNavBar(getTopElementPosition());
-    window.addEventListener("scroll", handleScroll);
+    if (scroll) {
+      getChangeLogoNavBar(getTopElementPosition());
+      window.addEventListener("scroll", handleScroll);
+    }
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [scroll, handleScroll]);
 
   return (
     <nav
