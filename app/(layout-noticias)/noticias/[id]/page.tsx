@@ -1,6 +1,8 @@
 import React from "react";
 import { findNoticia, noticias } from "../services/noticias.service";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return noticias.map((noticia) => ({
     id: noticia.id,
