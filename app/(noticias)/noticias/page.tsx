@@ -1,6 +1,5 @@
 "use client";
-import { Navbar } from "@/app/components";
-import { noticias } from "@/app/(layout-noticias)/noticias/services/noticias.service";
+import { noticias } from "@/app/(noticias)/noticias/services/noticias.service";
 import { Card } from "flowbite-react";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import Link from "next/link";
@@ -8,7 +7,6 @@ import Link from "next/link";
 function Home() {
   return (
     <>
-      <Navbar />
       <div className="container mx-auto px-4 pt-48 pb-14">
         <div className="mb-14">
           <h1 className="text-4xl pb-7 font-semibold text-gray-700">

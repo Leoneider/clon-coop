@@ -13,7 +13,9 @@ function Noticia({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const noticia = findNoticia(id);
-  return <div>page esto es una Noticia {noticia?.title}</div>;
+  return (
+    <div className="container mx-auto px-4 pt-48 pb-14">{noticia?.title}</div>
+  );
 }
 
 export default Noticia;
