@@ -8,7 +8,7 @@ import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOu
 
 import { Carousel, CustomFlowbiteTheme } from "flowbite-react";
 import ButtonNoticias from "@/app/components/button/Button";
-import { noticias } from "@/app/services/noticias";
+import { noticias } from "@/app/(layout-noticias)/noticias/services/noticias.service";
 
 const customTheme: CustomFlowbiteTheme["carousel"] = {
   root: {
