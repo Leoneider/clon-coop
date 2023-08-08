@@ -4,5 +4,4 @@ export interface INoticias {
   description: string;
   image: string;
   date: string;
-  href: string;
 }

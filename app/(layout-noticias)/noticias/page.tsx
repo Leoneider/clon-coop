@@ -39,7 +39,10 @@ function Home() {
                     <DateRangeIcon className="mr-1" />
                     {noticia.date}
                   </Link>
-                  <Link href={noticia.href} className="text-sky-600">
+                  <Link
+                    href={`noticias/${noticia.id}`}
+                    className="text-sky-600"
+                  >
                     Leer más
                   </Link>
                 </div>
