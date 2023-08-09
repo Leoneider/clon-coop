@@ -1,3 +1,4 @@
+import AppInfo from "@/app/components/app-info/AppInfo";
 import Navbar from "@/app/components/navbar/Navbar";
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({
     <>
       <Navbar />
       <div>{children}</div>
+      <AppInfo />
     </>
   );
 }
