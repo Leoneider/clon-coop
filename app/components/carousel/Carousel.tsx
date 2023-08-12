@@ -7,12 +7,17 @@ const items = [
   {
     name: "Random Name #1",
     description: "Probably the most random thing you have ever seen!",
-    img: "/banner-app_1920-718.jpg",
+    img: "/abejas-hd.jpg",
   },
   {
     name: "Random Name #2",
     description: "Hello World!",
-    img: "/banner-credito_1920-718.jpg",
+    img: "/cafe-hd.jpg",
+  },
+  {
+    name: "Random Name #2",
+    description: "Hello World!",
+    img: "/siembra-hd.jpg",
   },
 ];
 

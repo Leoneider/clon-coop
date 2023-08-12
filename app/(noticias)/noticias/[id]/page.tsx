@@ -1,6 +1,7 @@
 import React from "react";
 import { findNoticia, noticias } from "../services/noticias.service";
 import Image from "next/image";
+import AppMovil from "../components/AppMovil";
 
 export const dynamicParams = false;
 
@@ -16,11 +17,15 @@ function Noticia({ params }: { params: { id: string } }) {
   const noticia = findNoticia(id);
   if (!noticia) return null;
   return (
-    <div className="container mx-auto px-72 pt-48 pb-14">
-      <div className="grid grid-cols-10 justify-center">
-        <div className="col-span-7 px-7">
-          <p className="text-5xl font-semibold">{noticia?.title}</p>
-          <p className="pb-7 text-gray-400">2 min de lectura - Ene 8, 2021</p>
+    <div className="container mx-auto px-64 pt-48 pb-12">
+      <div className="grid grid-cols-12 justify-center bg-slate-50 py-7 rounded-md">
+        <div className="col-span-8 ps-7 pe-14">
+          <p className="text-5xl font-semibold text-zinc-600">
+            {noticia?.title}
+          </p>
+          <p className="font-light pt-3 pb-14 text-gray-400">
+            2 min de lectura - Ene 8, 2021
+          </p>
 
           <Image
             alt={noticia?.title}
@@ -30,12 +35,17 @@ function Noticia({ params }: { params: { id: string } }) {
             className="mb-7 rounded-md"
           />
 
-          <p className="text-start text-xl text-gray-600">
+          <p className="text-left text-xl text-gray-500 leading-relaxed font-light">
             {noticia?.description}
           </p>
         </div>
-        <div className="w-72 bg-amber-800">
-          <p>hola</p>
+        <div className="w-80">
+          <p className="font-semibold text-xl text-zinc-600">
+            Ultimas Noticias
+          </p>
+          <div className="grid grid-cols-1 gap-4 mt-7 mr-7">
+            <AppMovil />
+          </div>
         </div>
       </div>
     </div>
