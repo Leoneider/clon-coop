@@ -37,7 +37,7 @@ function Beneficios() {
     <>
       <div className="container mx-auto px-4 pt-16">
         <h1 className="text-center font-bold text-2xl text-teal-900">
-          Más <span className="text-secondary">Beneficios</span> para usted
+          Disfruta tus Beneficios Crediservir
         </h1>
         <div className="columns-3 pt-16">
           {beneficios.map(({ label, icon, imageFondo }) => (
