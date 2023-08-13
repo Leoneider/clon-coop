@@ -28,7 +28,7 @@ const customTheme: CustomFlowbiteTheme["carousel"] = {
   },
 };
 
-function Example() {
+function CarouselHeader() {
   return (
     <Carousel className="h-screen w-full" theme={customTheme}>
       {items.map((item, i) => (
@@ -46,7 +46,7 @@ function Example() {
             <h1 className="font-bold text-5xl text-gray-200 antialiased">
               Mi seguro Crediservir me cuida. ¡Asegúrate!
             </h1>
-            <p className="text-2xl text-gray-200 antialiased">
+            <p className="text-2xl mt-4 text-gray-200 antialiased">
               Descubre nuestra amplia oferta en seguros y protege lo que más
               quieres.
             </p>
@@ -60,4 +60,4 @@ function Example() {
   );
 }
 
-export default Example;
+export default CarouselHeader;

@@ -1,10 +1,10 @@
 "use client";
-import Example from "../carousel/Carousel";
+import CarouselHeader from "../carousel-header/CarouselHeader";
 
 function Header() {
   return (
     <div>
-      <Example />
+      <CarouselHeader />
     </div>
   );
 }
