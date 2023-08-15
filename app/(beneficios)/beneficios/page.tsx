@@ -1,4 +1,4 @@
 function Beneficios() {
-  return <div>page</div>;
+  return <div>pag</div>;
 }
 export default Beneficios;
