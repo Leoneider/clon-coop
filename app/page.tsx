@@ -9,14 +9,14 @@ import {
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar scroll={true} />
       <Header />
       <Servicios />
       <Noticias />
       <Beneficios />
       <Entidades />
-    </>
+    </div>
   );
 }
 export default App;
