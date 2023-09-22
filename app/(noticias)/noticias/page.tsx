@@ -1,4 +1,3 @@
-"use client";
 import { noticias } from "@/app/(noticias)/noticias/services/noticias.service";
 import CardNews from "./components/CardNews";
 
@@ -17,8 +16,8 @@ function Home() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
-          {noticias.map((noticia, idx) => (
-            <div key={idx} className="max-w-sm">
+          {noticias.map((noticia) => (
+            <div key={noticia.id} className="max-w-sm">
               <CardNews {...noticia}></CardNews>
             </div>
           ))}

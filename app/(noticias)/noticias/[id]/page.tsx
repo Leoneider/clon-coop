@@ -1,7 +1,11 @@
 import React from "react";
-import { findNoticia, noticias } from "../services/noticias.service";
+import {
+  findNoticia,
+  getLatestNews,
+  noticias,
+} from "../services/noticias.service";
 import Image from "next/image";
-import AppMovil from "../components/AppMovil";
+import LastNews from "../components/LastNews";
 
 export const dynamicParams = false;
 
@@ -13,6 +17,8 @@ export async function generateStaticParams() {
 
 function Noticia({ params }: { params: { id: string } }) {
   const { id } = params;
+
+  const lastNews = getLatestNews();
 
   const noticia = findNoticia(id);
   if (!noticia) return null;
@@ -43,8 +49,12 @@ function Noticia({ params }: { params: { id: string } }) {
           <p className="font-semibold text-xl text-zinc-600">
             Ultimas Noticias
           </p>
-          <div className="grid grid-cols-1 gap-4 mt-7 mr-7">
-            <AppMovil />
+          <div className="grid grid-cols-1 gap-4">
+            {lastNews.map((lastNew) => (
+              <div key={lastNew.title}>
+                <LastNews {...lastNew} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { ILastNew } from "../models/last-new.model";
 import { INoticias } from "../models/noticia.model";
 
 export const noticias: INoticias[] = [
@@ -63,6 +64,16 @@ export const noticias: INoticias[] = [
   },
 ];
 
-export const findNoticia = (id: string) => {
+export const findNoticia = (id: string): INoticias | undefined => {
   return noticias.find((noticia) => noticia.id === id);
+};
+
+export const getLatestNews = (): ILastNew[] => {
+  return noticias.slice(0, 3).map((noticia) => {
+    return {
+      title: noticia.title,
+      date: noticia.date,
+      url: `/noticias/${noticia.id}`,
+    };
+  });
 };
