@@ -69,7 +69,7 @@ export const findNoticia = (id: string): INoticias | undefined => {
 };
 
 export const getLatestNews = (): ILastNew[] => {
-  return noticias.slice(0, 3).map((noticia) => {
+  return noticias.slice(0, 4).map((noticia) => {
     return {
       title: noticia.title,
       date: noticia.date,

@@ -14,25 +14,28 @@ function Noticias() {
 
   return (
     <>
-      <div className="container mx-auto px-4 left">
+      <div className="container grid place-items-center mx-auto">
         <h1 className="text-center font-bold text-2xl text-teal-900 mb-10">
           Últimas Noticias
         </h1>
 
-        <div className="grid grid-cols-2 place-items-center">
+        <div className="grid grid-cols-2 gap-4">
           <div>
             <CardNews {...noticia} />
           </div>
 
-          <div className="grid gap-4">
-            {lastNews.map((lastNew) => (
-              <LastNews key={lastNew.title} {...lastNew} />
-            ))}
+          <div className="grid gap-4 ">
+            <div className="grid gap-4 h-80 overflow-y-auto">
+              {lastNews.map((lastNew) => (
+                <LastNews key={lastNew.title} {...lastNew} />
+              ))}
+            </div>
+
+            <div className="grid place-items-center">
+              <ButtonNoticias />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="grid place-items-center">
-        <ButtonNoticias />
       </div>
     </>
   );
