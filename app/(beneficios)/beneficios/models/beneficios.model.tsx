@@ -13,7 +13,7 @@ interface Item {
 export const beneficios: Item[] = [
   {
     label: "",
-    path: "/home",
+    path: "/beneficios/hola",
     icon: <ArrowForwardIcon className="text-lime-600" />,
     imageFondo: { backgroundImage: "url('/beneficios/beneficio1.jpg')" },
     animation: {

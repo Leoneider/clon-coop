@@ -4,9 +4,6 @@ const nextConfig = {
   swcMinify: true,
   skipTrailingSlashRedirect: true,
   skipMiddlewareUrlNormalize: true,
-  experimental: {
-    appDir: true,
-  },
 };
 
 module.exports = nextConfig;

@@ -1,6 +1,7 @@
 "use client";
 import { beneficios } from "@/app/(beneficios)/beneficios/models/beneficios.model";
 import { IconButton } from "@mui/material";
+import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 
 function Beneficios() {
@@ -31,7 +32,7 @@ function Beneficios() {
           <span className="text-secondary">Crediservir</span>
         </h1>
         <div ref={ref} className="grid grid-cols-3 place-items-center pt-16">
-          {beneficios.map(({ label, icon, imageFondo, animation }) => (
+          {beneficios.map(({ label, icon, imageFondo, animation, path }) => (
             <div
               key={label}
               className={`bg-cover bg-center h-80 w-80 object-cover rounded-md relative
@@ -40,9 +41,14 @@ function Beneficios() {
               style={imageFondo}
             >
               <div className="absolute bottom-0 p-7 flex items-center">
-                <IconButton size="large" className="bg-white hover:bg-lime-50">
-                  {icon}
-                </IconButton>
+                <Link href={path}>
+                  <IconButton
+                    size="large"
+                    className="bg-white hover:bg-lime-50"
+                  >
+                    {icon}
+                  </IconButton>
+                </Link>
                 |<h1 className="text-white ml-4">{label}</h1>
               </div>
             </div>

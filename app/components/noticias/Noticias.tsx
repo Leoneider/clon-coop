@@ -15,7 +15,7 @@ function Noticias() {
   return (
     <>
       <div className="container grid place-items-center mx-auto">
-        <h1 className="text-center font-bold text-2xl text-teal-900 mb-10">
+        <h1 className="text-center font-semibold text-3xl text-teal-900 pb-16">
           Últimas Noticias
         </h1>
 

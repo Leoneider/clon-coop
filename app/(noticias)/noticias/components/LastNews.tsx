@@ -9,7 +9,7 @@ function LastNews(lastNew: ILastNew) {
     <>
       <Card className="shadow-none" key={lastNew.title}>
         <h5 className="text-lg font-medium tracking-tight text-gray-500 hover:underline hover:text-sky-600">
-          <Link href={"/"}>{lastNew.title}</Link>
+          <Link href={lastNew.url}>{lastNew.title}</Link>
         </h5>
         <p className="text-sm font-light text-gray-400">{lastNew.date}</p>
       </Card>

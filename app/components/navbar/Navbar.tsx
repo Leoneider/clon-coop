@@ -6,7 +6,7 @@ import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 const links = [
-  { name: "Inicio", href: "/" },
+  { name: "Institucional", href: "/institucional" },
   { name: "Asóciese", href: "/asociados" },
   { name: "Ahorros", href: "/ahorros" },
   { name: "Créditos", href: "/creditos" },
