@@ -14,7 +14,6 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
-    "@next/font": "^13.3.0",
     "flowbite": "^1.7.0",
     "flowbite-react": "^0.4.10",
     "next": "14.0.1",
