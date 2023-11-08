@@ -4,7 +4,7 @@ import CardNews from "./components/CardNews";
 function Home() {
   return (
     <>
-      <div className="container mx-auto px-4 pt-48 pb-14">
+      <div className="container mx-auto px-4 pb-14">
         <div className="mb-14">
           <h1 className="text-4xl pb-7 font-semibold text-gray-700">
             Noticias y Eventos

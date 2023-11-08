@@ -7,7 +7,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 const links = [
   { name: "Institucional", href: "/institucional" },
-  { name: "Asóciese", href: "/asociados" },
+  { name: "Asóciese", href: "/asociese" },
   { name: "Ahorros", href: "/ahorros" },
   { name: "Créditos", href: "/creditos" },
   {
@@ -63,12 +63,12 @@ function Navbar({ scroll = false }) {
 
   useEffect(() => {
     if (scroll) {
-      window.addEventListener("scroll", handleScroll);
+      parent.addEventListener("scroll", handleScroll);
     }
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      parent.removeEventListener("scroll", handleScroll);
     };
-  }, [scroll, handleScroll]);
+  }, [scroll]);
 
   return (
     <nav

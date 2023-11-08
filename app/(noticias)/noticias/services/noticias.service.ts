@@ -4,7 +4,7 @@ import { INoticias } from "../models/noticia.model";
 export const noticias: INoticias[] = [
   {
     id: "1",
-    title: "Ganadores Concurso Crediservir Lovers",
+    title: "Ganadores Concurso Crediservir Videos",
     description: "Conozca los ganadores del Concurso Crediservir Lovers",
     image: "/noticias/img_0200.jpg",
     date: "21 Ene, 2023",

@@ -1,5 +1,6 @@
-import AppInfo from "@/app/components/app-info/AppInfo";
-import Navbar from "@/app/components/navbar/Navbar";
+import { useRef } from "react";
+import { Navbar } from "../components";
+import AppInfo from "../components/app-info/AppInfo";
 
 export const metadata = {
   title: "Next.js",

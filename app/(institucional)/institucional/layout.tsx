@@ -14,7 +14,8 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <div>{children}</div>
+      <div className="h-44"></div>
+      <div className="container mx-auto">{children}</div>
     </>
   );
 }
