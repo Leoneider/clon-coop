@@ -1,4 +1,5 @@
 import React from "react";
+import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 
 const asociadosFundadores = [
   "ANGARITA SALAZAR CARMELINA",
@@ -27,47 +28,75 @@ const asociadosFundadores = [
 ];
 
 function Page() {
+  const mitadDeAsociados = Math.ceil(asociadosFundadores.length / 2);
+  const asociadosFundadores1 = asociadosFundadores.slice(0, mitadDeAsociados);
+  const asociadosFundadores2 = asociadosFundadores.slice(mitadDeAsociados);
   return (
     <>
       <div className="container mx-auto">
-        <div className="grid grid-cols-2">
-          <div>
+        <div className="grid grid-cols-1 xl:grid-cols-3 px-7">
+          <div className="text-xl text-gray-500 xl:col-span-2 font-light">
             <h1 className="text-4xl pb-7 font-semibold text-gray-700">
               Reseña Histórica
             </h1>
 
             <p className="justify-start mb-7">
               En 1.989 un visionario, piadoso y caritativo pastor de la iglesia
-              católica, Monseñor IGNACIO GÓMEZ ARISTIZABAL, quien se desempeñaba
-              como Obispo de la diócesis de Ocaña, en un claro y abierto desafío
-              a las costumbres de la región y a la forma de pensar de la época;
-              tal vez, volando más allá de lo real, decidió irradiar en el
-              corazón de la gente de la provincia de Ocaña la semilla del
-              cooperativismo. Esta inquietud de cambio difundida por Pastoral
-              Social, se multiplicó en el alma de algunos teoramenses, que ven
-              en esta actividad económica exenta del lucro, una fórmula
-              esperanzadora tendiente a mitigar las angustias de la pobreza,
-              mediante el fácil acceso al crédito con intereses justos y
-              equitativos.
+              católica, Monseñor{" "}
+              <span className="text-primary">IGNACIO GÓMEZ ARISTIZABAL</span>,
+              quien se desempeñaba como Obispo de la diócesis de Ocaña, en un
+              claro y abierto desafío a las costumbres de la región y a la forma
+              de pensar de la época; tal vez, volando más allá de lo real,
+              decidió irradiar en el corazón de la gente de la provincia de
+              Ocaña la semilla del cooperativismo.
             </p>
-            <p>
+            <p className="justify-start mb-7">
+              Esta inquietud de cambio difundida por Pastoral Social, se
+              multiplicó en el alma de algunos teoramenses, que ven en esta
+              actividad económica exenta del lucro, una fórmula esperanzadora
+              tendiente a mitigar las angustias de la pobreza, mediante el fácil
+              acceso al crédito con intereses justos y equitativos.
+            </p>
+            <p className="justify-start mb-7">
               Fue así, como el nueve de diciembre de 1.989 en un improvisado
               local, 31 asociados liderados por el gerente MANUEL SANCHEZ PEREZ,
-              e inspirados en el ideal del Obispo IGNACIO GOMEZ, apoyados por el
-              Presbítero Martín Alsina Quintero y el Señor Carlos Alberto
-              Rodríguez que en la época era el director de pastoral social,
-              daban vida a este proyecto cooperativo denominado COOPERATIVA
-              INTEGRAL PARA EL DESARROLLO SOCIAL Y ECONOMICO DE TEORAMA LIMITADA
-              “COOPINTEGRATE LTDA”. Hoy, con sentimiento de gratitud y aprecio
-              queremos hacer un reconocimiento a los fundadores, personas
-              humildes del municipio de Teorama. Según acta de constitución la
-              relación es la siguiente:
+              e inspirados en el ideal del Obispo{" "}
+              <span className="text-primary">IGNACIO GOMEZ</span>, apoyados por
+              el Presbítero{" "}
+              <span className="text-primary">Martín Alsina Quintero</span> y el
+              Señor{" "}
+              <span className="text-primary">Carlos Alberto Rodríguez</span> que
+              en la época era el director de pastoral social, daban vida a este
+              proyecto cooperativo denominado COOPERATIVA INTEGRAL PARA EL
+              DESARROLLO SOCIAL Y ECONOMICO DE TEORAMA LIMITADA “COOPINTEGRATE
+              LTDA”.
             </p>
-            <ul className="my-7">
-              {asociadosFundadores.map((asociado) => (
-                <li key={asociado}>{asociado}</li>
-              ))}
-            </ul>
+            <p>
+              Hoy, con sentimiento de gratitud y aprecio queremos hacer un
+              reconocimiento a los fundadores, personas humildes del municipio
+              de Teorama.
+            </p>
+
+            <h2>Según acta de constitución larelación es la siguiente:</h2>
+
+            <div className="grid grid-cols-2">
+              <ul className="my-7">
+                {asociadosFundadores1.map((asociado) => (
+                  <li key={asociado}>
+                    <SupervisedUserCircleIcon className="text-lime-600" />{" "}
+                    {asociado}
+                  </li>
+                ))}
+              </ul>
+              <ul className="my-7">
+                {asociadosFundadores2.map((asociado) => (
+                  <li key={asociado}>
+                    <SupervisedUserCircleIcon className="text-lime-600" />{" "}
+                    {asociado}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <p>
               DESDE AQUÍ TAMBIEN ELEVAMOS NUESTRAS PLEGARIAS A LOS FUNDADORES

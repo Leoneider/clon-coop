@@ -26,6 +26,7 @@ function Navbar({ scroll = false }) {
   let textColor = "text-white";
   let logoImg = "/logo-vertical-coop.svg";
   let shadow = "";
+
   if (!scroll) {
     textColor = "bg-slate-100 text-primary";
     logoImg = "/logo-vertical-coop-color.svg";
@@ -77,14 +78,17 @@ function Navbar({ scroll = false }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center py-4">
-          <Image
-            src={logoImage || "/logo-vertical-coop.svg"}
-            width={183}
-            height={70}
-            alt="Logo de la cooperativa"
-            priority={true}
-            className="padding-0"
-          />
+          <Link href={"/"}>
+            <Image
+              src={logoImage || "/logo-vertical-coop.svg"}
+              width={183}
+              height={70}
+              alt="Logo de la cooperativa"
+              priority={true}
+              className="padding-0"
+            />
+          </Link>
+
           <ul className="flex flex-row gap-4 justify-center ">
             {links.map(({ name, href, icon }) => (
               <li
