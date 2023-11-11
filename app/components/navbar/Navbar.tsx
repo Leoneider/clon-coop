@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import { usePathname } from "next/navigation";
+import { Button } from "flowbite-react";
 
 const links = [
   { name: "Institucional", href: "/institucional" },
@@ -23,6 +25,7 @@ const links = [
 ];
 
 function Navbar({ scroll = false }) {
+  const pathname = usePathname();
   let textColor = "text-white";
   let logoImg = "/logo-vertical-coop.svg";
   let shadow = "";
@@ -36,8 +39,6 @@ function Navbar({ scroll = false }) {
   const [backgroundColor, setBackgroundColor] = useState(textColor);
   const [shadowNav, setShadowNav] = useState(shadow);
   const [logoImage, setLogoImage] = useState(logoImg);
-
-  const navRef = useRef<HTMLDivElement>(null);
 
   const getChangeLogoNavBar = (y: number, navHeight: number) => {
     if (Math.abs(y) >= navHeight) {
@@ -62,6 +63,8 @@ function Navbar({ scroll = false }) {
     }
   }, []);
 
+  const navRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (scroll) {
       parent.addEventListener("scroll", handleScroll);
@@ -73,14 +76,14 @@ function Navbar({ scroll = false }) {
 
   return (
     <nav
-      className={`w-full fixed z-50 ${shadowNav} ${backgroundColor} transition ease-in-out delay-150 duration-300`}
+      className={`w-full fixed z-50 ${shadowNav} ${backgroundColor}`}
       ref={navRef}
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-row justify-between items-center py-4">
           <Link href={"/"}>
             <Image
-              src={logoImage || "/logo-vertical-coop.svg"}
+              src={logoImage}
               width={183}
               height={70}
               alt="Logo de la cooperativa"
@@ -89,14 +92,20 @@ function Navbar({ scroll = false }) {
             />
           </Link>
 
-          <ul className="flex flex-row gap-4 justify-center ">
+          <ul className="flex flex-row gap-4 justify-center">
             {links.map(({ name, href, icon }) => (
-              <li
-                key={name}
-                className="hover:bg-slate-50 hover:bg-opacity-5 py-2 px-4 rounded-md"
-              >
-                {icon}
-                <Link href={href}> {name}</Link>
+              <li key={name}>
+                <Link href={href}>
+                  <Button
+                    size="lg"
+                    color="none"
+                    className={`font-normal bg-transparent ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
+                    gradientDuoTone={pathname == href ? "greenToBlue" : ""}
+                  >
+                    {icon}
+                    {name}
+                  </Button>
+                </Link>
               </li>
             ))}
           </ul>

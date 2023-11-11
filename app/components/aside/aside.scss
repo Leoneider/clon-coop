@@ -1,0 +1,13 @@
+.asideDec{
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    display: block;
+    content: "";
+    top: 0%;
+    z-index: -1;
+    right: 0px;
+    clip-path:polygon(100% 0, 100% 100%, 0 42%, 0 0);
+    border-radius: 12px 12px 0 12px;
+    background: -webkit-linear-gradient(270deg, #5ee5ae 0%, #2db38c 100%);
+}

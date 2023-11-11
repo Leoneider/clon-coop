@@ -14,26 +14,27 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
-    "flowbite": "^1.7.0",
-    "flowbite-react": "^0.4.10",
+    "autoprefixer": "^10.4.16",
+    "flowbite": "^2.0.0",
+    "flowbite-react": "0.7.0-beta.5",
     "next": "14.0.1",
+    "postcss": "^8.4.31",
     "react": "^18",
     "react-dom": "^18",
-    "react-intersection-observer": "^9.5.2"
+    "react-icons": "^4.11.0",
+    "react-intersection-observer": "^9.5.2",
+    "tailwindcss": "^3.3.5"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.14",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
-    "postcss": "^8",
     "prettier": "^2.8.7",
     "sass": "^1.62.0",
-    "tailwindcss": "^3.3.1",
     "typescript": "^5"
   },
   "lint-staged": {

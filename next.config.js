@@ -4,6 +4,15 @@ const nextConfig = {
   swcMinify: true,
   skipTrailingSlashRedirect: true,
   skipMiddlewareUrlNormalize: true,
+  redirects: async () => {
+    return [
+      {
+        source: '/institucional',
+        destination: '/institucional/resena-historica',
+        permanent: true,
+      },
+    ];
+  }
 };
 
 module.exports = nextConfig;
