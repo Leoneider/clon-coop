@@ -5,6 +5,7 @@ import {
   Entidades,
   Noticias,
   Servicios,
+  Simulador,
 } from "./components";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <div>
       <Navbar scroll={true} />
       <Header />
+      <Simulador />
       <Servicios />
       <Noticias />
       <Beneficios />

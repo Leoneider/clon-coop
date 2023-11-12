@@ -1,0 +1,16 @@
+.general-box::before {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    display: block;
+    content: "";
+    top: 30%;
+    z-index: 10;
+    right: -15px;
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+    @apply bg-green-700;
+
+   
+   
+}
+

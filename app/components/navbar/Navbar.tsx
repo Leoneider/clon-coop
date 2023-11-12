@@ -84,8 +84,8 @@ function Navbar({ scroll = false }) {
           <Link href={"/"}>
             <Image
               src={logoImage}
-              width={183}
-              height={70}
+              width={123}
+              height={60}
               alt="Logo de la cooperativa"
               priority={true}
               className="padding-0"
