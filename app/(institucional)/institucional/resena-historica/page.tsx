@@ -1,6 +1,8 @@
 import React from "react";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import { Blockquote } from "flowbite-react";
+import { LiaAtlasSolid } from "react-icons/lia";
+import Image from "next/image";
 
 const asociadosFundadores = [
   "Angarita Salazar Carmelina",
@@ -62,11 +64,17 @@ const asociadosFundadores2 = asociadosFundadores.slice(mitadDeAsociados);
 function Page() {
   return (
     <>
-      <div>
-        <h1 className="text-3xl pb-7 font-semibold text-gray-700">
-          Reseña Histórica
-        </h1>
+      <div className="bg-gray-100  w-full flex  p-7">
+        <LiaAtlasSolid className="h-12 w-12 font-light text-gray-400" />
+        <div className="flex-grow pl-4">
+          <h1 className="text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-800">
+            Reseña Histórica
+          </h1>
+          <p className="text-sm text-gray-800">Construyendo juntos el futuro</p>
+        </div>
+      </div>
 
+      <div className="p-7">
         <p className="justify-start mb-7">
           En 1.989 un visionario, piadoso y caritativo pastor de la iglesia
           católica, Monseñor{" "}
@@ -78,13 +86,27 @@ function Page() {
           cooperativismo.
         </p>
 
-        <p className="justify-start mb-7">
-          Esta inquietud de cambio difundida por Pastoral Social, se multiplicó
-          en el alma de algunos teoramenses, que ven en esta actividad económica
-          exenta del lucro, una fórmula esperanzadora tendiente a mitigar las
-          angustias de la pobreza, mediante el fácil acceso al crédito con
-          intereses justos y equitativos.
-        </p>
+        <div className="mb-7">
+          <div className="lg:flex lg:p-7">
+            <div className="lg:shrink-0 relative w-44 h-auto">
+              <Image
+                src="/institucional/financiera-cooperativa.png"
+                alt="Modern building architecture"
+                fill
+                objectFit="contain"
+              />
+            </div>
+            <div>
+              <p className="lg:pl-4">
+                Esta inquietud de cambio difundida por Pastoral Social, se
+                multiplicó en el alma de algunos teoramenses, que ven en esta
+                actividad económica exenta del lucro, una fórmula esperanzadora
+                tendiente a mitigar las angustias de la pobreza, mediante el
+                fácil acceso al crédito con intereses justos y equitativos.
+              </p>
+            </div>
+          </div>
+        </div>
 
         <p className="justify-start mb-7">
           Fue así, como el nueve de diciembre de 1.989 en un improvisado local,

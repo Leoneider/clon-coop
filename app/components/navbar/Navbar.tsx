@@ -92,7 +92,7 @@ function Navbar({ scroll = false }) {
             />
           </Link>
 
-          <ul className="flex flex-row gap-4 justify-center">
+          <ul className="hidden lg:flex flex-row gap-4 justify-center">
             {links.map(({ name, href, icon }) => (
               <li key={name}>
                 <Link href={href}>
@@ -103,7 +103,7 @@ function Navbar({ scroll = false }) {
                     gradientDuoTone={pathname == href ? "greenToBlue" : ""}
                   >
                     {icon}
-                    {name}
+                    <span className="drop-shadow-lg">{name}</span>
                   </Button>
                 </Link>
               </li>
