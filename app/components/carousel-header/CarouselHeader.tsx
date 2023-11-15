@@ -26,7 +26,7 @@ const customTheme: CustomFlowbiteTheme["carousel"] = {
     icon: "h-5 w-5 text-white dark:text-gray-800 sm:h-6 sm:w-6",
   },
   scrollContainer: {
-    base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth",
+    base: "flex h-full snap-proximity overflow-y-hidden overflow-x-scroll scroll-smooth",
     snap: "snap-x",
   },
 };
@@ -36,6 +36,7 @@ function CarouselHeader() {
     <Carousel
       className=" h-96 sm:h-screen w-full"
       pauseOnHover
+      slideInterval={5000}
       theme={customTheme}
     >
       {items.map((item, i) => (
@@ -43,9 +44,9 @@ function CarouselHeader() {
           <Image
             alt={item.name}
             src={item.img}
-            fill={true}
-            style={{ objectFit: "cover", borderRadius: "0px" }}
-            className="drop-shadow-lg"
+            fill
+            objectFit="cover"
+            className="rounded-none"
           />
 
           <div className="absolute h-full w-full bg-gradient-to-t from-black to-transparent z-10 opacity-30"></div>
