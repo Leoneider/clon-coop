@@ -31,7 +31,10 @@ function Beneficios() {
           Disfruta tus Beneficios{" "}
           <span className="text-secondary">Crediservir</span>
         </h1>
-        <div ref={ref} className="grid grid-cols-3 place-items-center pt-16">
+        <div
+          ref={ref}
+          className="grid grid-cols-1  sm:grid-cols-3 place-items-center pt-16"
+        >
           {beneficios.map(({ label, icon, imageFondo, animation, path }) => (
             <div
               key={label}
