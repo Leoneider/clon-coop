@@ -21,7 +21,10 @@
     "paths": {
       "@/*": [
         "app/*"
-      ]
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
     },
     "plugins": [
       {
