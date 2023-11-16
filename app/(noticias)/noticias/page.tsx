@@ -1,5 +1,5 @@
-import { noticias } from "@/app/(noticias)/noticias/services/noticias.service";
 import CardNews from "./components/CardNews";
+import { noticias } from "./services/noticias.service";
 
 function Home() {
   return (

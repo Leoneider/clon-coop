@@ -1,6 +1,5 @@
-import Navbar from "@/app/components/navbar/Navbar";
 import React from "react";
-import Aside from "../components/aside/Aside";
+import { Navbar, Aside } from "@/components";
 
 export const metadata = {
   title: "Institucional",

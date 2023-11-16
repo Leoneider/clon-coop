@@ -1,5 +1,6 @@
 "use client";
-import { beneficios } from "@/app/(beneficios)/beneficios/models/beneficios.model";
+
+import { beneficios } from "@/(beneficios)/beneficios/models/beneficios.model";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";

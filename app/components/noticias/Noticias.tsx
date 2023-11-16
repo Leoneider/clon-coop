@@ -1,11 +1,11 @@
-import ButtonNoticias from "@/app/components/button/Button";
+import CardNews from "@/(noticias)/noticias/components/CardNews";
+import LastNews from "@/(noticias)/noticias/components/LastNews";
+import { INoticias } from "@/(noticias)/noticias/models/noticia.model";
 import {
   findNoticia,
   getLatestNews,
-} from "@/app/(noticias)/noticias/services/noticias.service";
-import CardNews from "@/app/(noticias)/noticias/components/CardNews";
-import { INoticias } from "@/app/(noticias)/noticias/models/noticia.model";
-import LastNews from "@/app/(noticias)/noticias/components/LastNews";
+} from "@/(noticias)/noticias/services/noticias.service";
+import ButtonNoticias from "../button/Button";
 
 function Noticias() {
   let news: INoticias | undefined = findNoticia("1");

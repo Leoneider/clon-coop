@@ -72,7 +72,7 @@ function Navbar({ scroll = false }) {
     return () => {
       parent.removeEventListener("scroll", handleScroll);
     };
-  }, [scroll]);
+  }, [scroll, handleScroll]);
 
   return (
     <nav
