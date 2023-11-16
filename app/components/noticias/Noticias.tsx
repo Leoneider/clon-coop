@@ -14,7 +14,7 @@ function Noticias() {
 
   return (
     <>
-      <div className="bg-sky-50 py-12">
+      <div className="bg-sky-50 py-12 px-7">
         <div className="container grid place-items-center mx-auto">
           <h1 className="text-center font-semibold text-3xl text-teal-900 pb-16">
             Últimas Noticias

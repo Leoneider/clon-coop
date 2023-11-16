@@ -12,7 +12,7 @@ import "./simulador.scss";
 
 function Simulador() {
   return (
-    <div className="container mx-auto xl:px-56 sm:py-12">
+    <div className="container mx-auto xl:px-56 pb-12 sm:pt-12">
       <div className="grid grid-cols-1 sm:grid-cols-5">
         <div className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-2 general-box relative">
           <p className="text-2xl">¿Necesitas un crédito?</p>

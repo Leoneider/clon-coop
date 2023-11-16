@@ -36,7 +36,7 @@ function Servicios() {
     <>
       <div className="flex justify-center  xl:px-56 mb-12">
         <div className="shadow-md  border border-gray-200">
-          <div className="flex justify-center flex-wrap">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
             {servicios.map(({ name, icon }) => (
               <div
                 key={name}
