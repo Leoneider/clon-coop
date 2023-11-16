@@ -34,7 +34,7 @@ function Beneficios() {
         </h1>
         <div
           ref={ref}
-          className="grid grid-cols-1  sm:grid-cols-3 place-items-center pt-16"
+          className="grid grid-cols-1 gap-4 lg:grid-cols-3 place-items-center pt-16"
         >
           {beneficios.map(({ label, icon, imageFondo, animation, path }) => (
             <div
@@ -53,7 +53,7 @@ function Beneficios() {
                     {icon}
                   </IconButton>
                 </Link>
-                |<h1 className="text-white ml-4">{label}</h1>
+                <h1 className="text-white ml-4">{label}</h1>
               </div>
             </div>
           ))}

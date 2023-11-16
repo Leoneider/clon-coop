@@ -17,8 +17,8 @@ export const beneficios: Item[] = [
     icon: <ArrowForwardIcon className="text-lime-600" />,
     imageFondo: { backgroundImage: "url('/beneficios/beneficio1.jpg')" },
     animation: {
-      to: "translate-x-0 opacity-100 duration-1000",
-      from: "-translate-x-72 opacity-0",
+      to: "lg:translate-x-0 lg:opacity-100 lg:duration-1000",
+      from: "lg:-translate-x-72 lg:opacity-0",
     },
   },
   {
@@ -27,8 +27,8 @@ export const beneficios: Item[] = [
     icon: <Diversity1Icon className="text-lime-600" />,
     imageFondo: { backgroundImage: "url('/beneficios/beneficio2.jpg')" },
     animation: {
-      to: "translate-y-0 opacity-100 duration-1000",
-      from: "translate-y-72 opacity-0",
+      to: "lg:translate-y-0 lg:opacity-100 lg:duration-1000",
+      from: "lg:translate-y-72 lg:opacity-0",
     },
   },
   {
@@ -37,8 +37,8 @@ export const beneficios: Item[] = [
     icon: <CreditCardIcon className="text-lime-600" />,
     imageFondo: { backgroundImage: "url('/beneficios/beneficio3.jpg')" },
     animation: {
-      to: "translate-x-0 opacity-100 duration-1000",
-      from: "translate-x-72 opacity-0",
+      to: "lg:translate-x-0 lg:opacity-100 lg:duration-1000",
+      from: "lg:translate-x-72 lg:opacity-0",
     },
   },
 ];

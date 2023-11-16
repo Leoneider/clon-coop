@@ -45,7 +45,7 @@ function CarouselHeader() {
             alt={item.name}
             src={item.img}
             fill
-            objectFit="cover"
+            style={{ objectFit: "cover" }}
             className="rounded-none"
           />
 
