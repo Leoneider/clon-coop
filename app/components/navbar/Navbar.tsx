@@ -6,6 +6,7 @@ import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { usePathname } from "next/navigation";
 import { Button } from "flowbite-react";
+import { Spin } from "./Spin";
 
 const links = [
   { name: "Institucional", href: "/institucional" },
@@ -109,6 +110,10 @@ function Navbar({ scroll = false }) {
               </li>
             ))}
           </ul>
+
+          <div className="lg:hidden">
+            <Spin></Spin>
+          </div>
         </div>
       </div>
     </nav>

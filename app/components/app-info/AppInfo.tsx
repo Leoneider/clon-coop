@@ -53,7 +53,7 @@ function AppInfo() {
               </div>
             </div>
           </div>
-          <div className="py-7 sm:py-0">
+          <div className="hidden sm:block py-7 sm:py-0">
             <Image
               alt="app crediservir"
               src="/app-info/mockup-app.png"

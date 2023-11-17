@@ -41,7 +41,10 @@ function Noticia({ params }: { params: { id: string } }) {
             className="mb-7 rounded-md"
           />
 
-          <p className="text-left text-xl text-gray-500 leading-relaxed font-light">
+          <p
+            className="first-letter:text-7xl first-letter:font-bold first-letter:text-slate-900
+   first-letter:float-left text-left text-xl text-gray-500 leading-relaxed font-light"
+          >
             {noticia?.description}
           </p>
         </div>
