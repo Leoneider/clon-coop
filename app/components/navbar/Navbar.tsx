@@ -44,12 +44,9 @@ function Navbar({ scroll = false }) {
   const [isOpen, setOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  const getChangeLogoNavBar = (
-    y: number = 0,
-    navHeight: number = 0,
-    isOpen = false
-  ) => {
-    if (Math.abs(y) >= navHeight) {
+  const getChangeLogoNavBar = (y: number = 0) => {
+    console.log("isOpen", isOpen);
+    if (Math.abs(y) > 70) {
       setLogoImage("/logo-vertical-coop-color.svg");
       setShadowNav("shadow-lg");
       setBackgroundColor("bg-slate-100 text-primary");
@@ -60,19 +57,14 @@ function Navbar({ scroll = false }) {
     }
   };
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = () => {
     const currentElement = navRef.current;
     const parent = currentElement?.parentElement;
 
     if (parent) {
       const y = parent.getBoundingClientRect().y;
-      const navHeight = navRef.current?.offsetHeight || 0;
-      getChangeLogoNavBar(y, navHeight, isOpen);
+      getChangeLogoNavBar(y);
     }
-  }, []);
-
-  const getPrueba = (isOpen: boolean) => {
-    getChangeLogoNavBar(0, 0, isOpen);
   };
 
   useEffect(() => {
@@ -86,15 +78,18 @@ function Navbar({ scroll = false }) {
 
   return (
     <>
-      <div className="w-full fixed z-10" ref={navRef}>
+      <div className="w-full fixed z-10 " ref={navRef}>
         <nav
           className={`${shadowNav} ${backgroundColor} ${
-            isOpen ? "bg-green-300 text-white" : ""
-          } transition-all duration-500 ease-in-out}`}
+            isOpen ? "bg-green-300" : ""
+          } transition-all duration-100 ease-in-out`}
         >
           <div className="container mx-auto px-4">
             <div className="flex flex-row justify-between items-center py-4">
-              <Link href={"/"}>
+              <Link
+                href={"/"}
+                className="transition-all duration-500 ease-in-out"
+              >
                 <Image
                   src={logoImage}
                   width={123}
@@ -132,7 +127,7 @@ function Navbar({ scroll = false }) {
           </div>
         </nav>
         {isOpen && (
-          <div className="h-screen w-full bg-green-100 p-7 transition-all duration-500 ease-in-out">
+          <div className="h-screen w-full bg-green-100 p-7">
             <ul className="flex flex-col gap-4 justify-center">
               {links.map(({ name, href, icon }) => (
                 <li key={name}>
