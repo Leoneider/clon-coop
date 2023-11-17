@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <div className="h-44"></div>
+      <div className="h-28"></div>
       <div className="container mx-auto">{children}</div>
       <AppInfo />
     </>

@@ -41,7 +41,7 @@ function Servicios() {
               <div
                 key={name}
                 className="w-40 p-2 relative text-center font-normal text-green-900
-               hover:bg-green-900 hover:text-white transition duration-500 ease-in-out cursor-pointer"
+               hover:bg-green-50 transition duration-500 ease-in-out cursor-pointer"
               >
                 <div className="grid justify-center">{icon}</div>
 

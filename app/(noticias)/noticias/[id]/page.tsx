@@ -23,9 +23,9 @@ function Noticia({ params }: { params: { id: string } }) {
   const noticia = findNoticia(id);
   if (!noticia) return null;
   return (
-    <div className="container mx-auto px-64 pb-12">
-      <div className="grid grid-cols-12 justify-center bg-slate-50 py-7 rounded-md">
-        <div className="col-span-8 ps-7 pe-14">
+    <div className="container mx-auto">
+      <div className="flex justify-center bg-slate-50 p-7 rounded-md">
+        <div className="max-w-3xl">
           <p className="text-5xl font-semibold text-zinc-600">
             {noticia?.title}
           </p>
@@ -45,7 +45,7 @@ function Noticia({ params }: { params: { id: string } }) {
             {noticia?.description}
           </p>
         </div>
-        <div className="w-80">
+        <div className="w-80 hidden lg:block">
           <p className="font-semibold text-xl text-zinc-600">
             Ultimas Noticias
           </p>

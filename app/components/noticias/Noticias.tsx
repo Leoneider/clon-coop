@@ -5,7 +5,7 @@ import {
   findNoticia,
   getLatestNews,
 } from "@/(noticias)/noticias/services/noticias.service";
-import ButtonNoticias from "../button/Button";
+import { Button } from "flowbite-react";
 
 function Noticias() {
   let news: INoticias | undefined = findNoticia("1");
@@ -32,8 +32,10 @@ function Noticias() {
                 ))}
               </div>
 
-              <div className="grid place-items-center">
-                <ButtonNoticias />
+              <div className="grid place-items-center ">
+                <Button outline gradientDuoTone="greenToBlue" color="green">
+                  Ver más noticias
+                </Button>
               </div>
             </div>
           </div>

@@ -1,7 +1,6 @@
 export { default as AppInfo } from "./app-info/AppInfo";
 export { default as Aside } from "./aside/Aside";
 export { default as Beneficios } from "./beneficios/Beneficios";
-export { default as Button } from "./button/Button";
 export { default as CarouselHeader } from "./carousel-header/CarouselHeader";
 export { default as Entidades } from "./entidades/Entidades";
 export { default as Footer } from "./footer/Footer";

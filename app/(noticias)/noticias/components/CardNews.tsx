@@ -8,7 +8,11 @@ import DateRangeIcon from "@mui/icons-material/DateRange";
 function CardNews(news: INoticias) {
   return (
     <div>
-      <Card className="h-full" imgAlt={news.title} imgSrc={news.image}>
+      <Card
+        className="h-full shadow-none"
+        imgAlt={news.title}
+        imgSrc={news.image}
+      >
         <h5 className="text-2xl font-semibold tracking-tight text-gray-700 dark:text-white">
           {news.title}
         </h5>
