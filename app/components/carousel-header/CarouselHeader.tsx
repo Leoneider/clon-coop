@@ -26,7 +26,7 @@ const customTheme: CustomFlowbiteTheme["carousel"] = {
     icon: "h-5 w-5 text-white dark:text-gray-800 sm:h-6 sm:w-6",
   },
   scrollContainer: {
-    base: "flex h-full snap-proximity overflow-y-hidden overflow-x-scroll scroll-smooth",
+    base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth",
     snap: "snap-x",
   },
 };

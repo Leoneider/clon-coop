@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { usePathname } from "next/navigation";
-import { Button } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import { Spin } from "./Spin";
 
 const links = [
@@ -41,7 +41,14 @@ function Navbar({ scroll = false }) {
   const [shadowNav, setShadowNav] = useState(shadow);
   const [logoImage, setLogoImage] = useState(logoImg);
 
-  const getChangeLogoNavBar = (y: number, navHeight: number) => {
+  const [isOpen, setOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  const getChangeLogoNavBar = (
+    y: number = 0,
+    navHeight: number = 0,
+    isOpen = false
+  ) => {
     if (Math.abs(y) >= navHeight) {
       setLogoImage("/logo-vertical-coop-color.svg");
       setShadowNav("shadow-lg");
@@ -60,11 +67,13 @@ function Navbar({ scroll = false }) {
     if (parent) {
       const y = parent.getBoundingClientRect().y;
       const navHeight = navRef.current?.offsetHeight || 0;
-      getChangeLogoNavBar(y, navHeight);
+      getChangeLogoNavBar(y, navHeight, isOpen);
     }
   }, []);
 
-  const navRef = useRef<HTMLDivElement>(null);
+  const getPrueba = (isOpen: boolean) => {
+    getChangeLogoNavBar(0, 0, isOpen);
+  };
 
   useEffect(() => {
     if (scroll) {
@@ -76,47 +85,78 @@ function Navbar({ scroll = false }) {
   }, [scroll, handleScroll]);
 
   return (
-    <nav
-      className={`w-full fixed z-50 ${shadowNav} ${backgroundColor}`}
-      ref={navRef}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex flex-row justify-between items-center py-4">
-          <Link href={"/"}>
-            <Image
-              src={logoImage}
-              width={123}
-              height={60}
-              alt="Logo de la cooperativa"
-              priority={true}
-              className="padding-0"
-            />
-          </Link>
+    <>
+      <div className="w-full fixed z-10" ref={navRef}>
+        <nav
+          className={`${shadowNav} ${backgroundColor} ${
+            isOpen ? "bg-green-300 text-white" : ""
+          } transition-all duration-500 ease-in-out}`}
+        >
+          <div className="container mx-auto px-4">
+            <div className="flex flex-row justify-between items-center py-4">
+              <Link href={"/"}>
+                <Image
+                  src={logoImage}
+                  width={123}
+                  height={60}
+                  alt="Logo de la cooperativa"
+                  priority={true}
+                  className="padding-0"
+                />
+              </Link>
 
-          <ul className="hidden lg:flex flex-row gap-4 justify-center">
-            {links.map(({ name, href, icon }) => (
-              <li key={name}>
-                <Link href={href}>
-                  <Button
-                    size="lg"
-                    color="none"
-                    className={`font-normal bg-transparent ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
-                    gradientDuoTone={pathname == href ? "greenToBlue" : ""}
-                  >
-                    {icon}
-                    <span className="drop-shadow-lg">{name}</span>
-                  </Button>
-                </Link>
-              </li>
-            ))}
-          </ul>
+              <ul className="hidden lg:flex flex-row gap-4 justify-center ">
+                {links.map(({ name, href, icon }) => (
+                  <li key={name}>
+                    <Link href={href}>
+                      <Button
+                        size="lg"
+                        color="none"
+                        className={`font-normal bg-transparent ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
+                        gradientDuoTone={
+                          pathname.includes(href) ? "greenToBlue" : ""
+                        }
+                      >
+                        {icon}
+                        <span className="drop-shadow-lg">{name}</span>
+                      </Button>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-          <div className="lg:hidden">
-            <Spin></Spin>
+              <div className="lg:hidden">
+                <Spin toggled={isOpen} toggle={setOpen} />
+              </div>
+            </div>
           </div>
-        </div>
+        </nav>
+        {isOpen && (
+          <div className="h-screen w-full bg-green-100 p-7 transition-all duration-500 ease-in-out">
+            <ul className="flex flex-col gap-4 justify-center">
+              {links.map(({ name, href, icon }) => (
+                <li key={name}>
+                  <Link href={href}>
+                    <Button
+                      fullSized
+                      size="lg"
+                      color="none"
+                      className={`font-normal ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
+                      gradientDuoTone={
+                        pathname.includes(href) ? "greenToBlue" : ""
+                      }
+                    >
+                      {icon}
+                      <span className="drop-shadow-lg">{name}</span>
+                    </Button>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-    </nav>
+    </>
   );
 }
 export default Navbar;
