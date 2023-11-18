@@ -25,17 +25,14 @@ const links = [
   },
 ];
 
-function Navbar({ scroll = false }) {
+function Navbar({ scrollHabilitado = false }) {
   const pathname = usePathname();
-  let textColor = "text-white";
-  let logoImg = "/logo-vertical-coop.svg";
-  let shadow = "";
 
-  if (!scroll) {
-    textColor = "bg-slate-100 text-primary";
-    logoImg = "/logo-vertical-coop-color.svg";
-    shadow = "shadow-lg";
-  }
+  let textColor = scrollHabilitado ? "text-white" : "text-primary";
+  let logoImg = scrollHabilitado
+    ? "/logo-vertical-coop.svg"
+    : "/logo-vertical-coop-color.svg";
+  let shadow = scrollHabilitado ? "" : "shadow-lg bg-slate-100";
 
   const [backgroundColor, setBackgroundColor] = useState(textColor);
   const [shadowNav, setShadowNav] = useState(shadow);
@@ -45,7 +42,6 @@ function Navbar({ scroll = false }) {
   const navRef = useRef<HTMLDivElement>(null);
 
   const getChangeLogoNavBar = (y: number = 0) => {
-    console.log("isOpen", isOpen);
     if (Math.abs(y) > 70) {
       setLogoImage("/logo-vertical-coop-color.svg");
       setShadowNav("shadow-lg");
@@ -53,7 +49,7 @@ function Navbar({ scroll = false }) {
     } else {
       setLogoImage("/logo-vertical-coop.svg");
       setShadowNav("");
-      setBackgroundColor("text-white");
+      setBackgroundColor(textColor);
     }
   };
 
@@ -61,27 +57,32 @@ function Navbar({ scroll = false }) {
     const currentElement = navRef.current;
     const parent = currentElement?.parentElement;
 
-    if (parent) {
+    if (parent && scrollHabilitado) {
       const y = parent.getBoundingClientRect().y;
       getChangeLogoNavBar(y);
     }
   };
   useEffect(() => {
+    getChangeLogoNavBar();
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [isOpen]);
 
   useEffect(() => {
-    if (scroll) {
+    if (scrollHabilitado) {
       parent.addEventListener("scroll", handleScroll);
     }
     return () => {
       parent.removeEventListener("scroll", handleScroll);
     };
-  }, [scroll, handleScroll]);
+  }, [scrollHabilitado, handleScroll]);
 
   return (
     <>
@@ -100,7 +101,7 @@ function Navbar({ scroll = false }) {
                 <Image
                   src={logoImage}
                   width={123}
-                  height={60}
+                  height={83}
                   alt="Logo de la cooperativa"
                   priority={true}
                   className="padding-0"

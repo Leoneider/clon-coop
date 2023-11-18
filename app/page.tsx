@@ -11,7 +11,7 @@ import {
 function App() {
   return (
     <div>
-      <Navbar scroll={true} />
+      <Navbar scrollHabilitado={true} />
       <Header />
       <Simulador />
       <Servicios />
