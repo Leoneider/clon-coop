@@ -128,8 +128,8 @@ function Navbar({ scroll = false }) {
         </nav>
       </div>
       <div
-        className={`fixed h-screen w-screen bg-green-100 p-7 transition ease-in-out duration-300 z-40 ${
-          isOpen ? "translate-x-0" : "translate-x-96"
+        className={`fixed h-screen w-screen bg-green-100 p-7 transition ease-in-out duration-300 z-40 lg:hidden ${
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <ul className="flex flex-col gap-4 justify-center mt-32">
