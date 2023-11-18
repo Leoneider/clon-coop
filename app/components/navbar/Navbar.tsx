@@ -66,6 +66,13 @@ function Navbar({ scroll = false }) {
       getChangeLogoNavBar(y);
     }
   };
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (scroll) {
@@ -127,29 +134,34 @@ function Navbar({ scroll = false }) {
           </div>
         </nav>
       </div>
-      <div
-        className={`fixed h-screen w-screen bg-green-100 p-7 transition ease-in-out duration-300 z-40 lg:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <ul className="flex flex-col gap-4 justify-center mt-32">
-          {links.map(({ name, href, icon }) => (
-            <li key={name}>
-              <Link href={href}>
-                <Button
-                  fullSized
-                  size="lg"
-                  color="none"
-                  className={`font-normal ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
-                  gradientDuoTone={pathname.includes(href) ? "greenToBlue" : ""}
-                >
-                  {icon}
-                  <span className="drop-shadow-lg">{name}</span>
-                </Button>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className="overflow-y-hidden ">
+        <div
+          className={`fixed inset-0 h-screen w-screen bg-green-100 p-7 transition ease-in-out duration-300 z-40 lg:hidden ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          style={{ overflowY: "hidden" }}
+        >
+          <ul className="flex flex-col gap-4 justify-center mt-32">
+            {links.map(({ name, href, icon }) => (
+              <li key={name}>
+                <Link href={href}>
+                  <Button
+                    fullSized
+                    size="lg"
+                    color="none"
+                    className={`font-normal ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
+                    gradientDuoTone={
+                      pathname.includes(href) ? "greenToBlue" : ""
+                    }
+                  >
+                    {icon}
+                    <span className="drop-shadow-lg">{name}</span>
+                  </Button>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
