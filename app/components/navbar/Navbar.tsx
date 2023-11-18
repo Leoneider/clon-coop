@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { usePathname } from "next/navigation";
-import { Button, Modal } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { Spin } from "./Spin";
 
 const links = [
@@ -78,9 +78,9 @@ function Navbar({ scroll = false }) {
 
   return (
     <>
-      <div className="w-full fixed z-10 " ref={navRef}>
+      <div className="relative" ref={navRef}>
         <nav
-          className={`${shadowNav} ${backgroundColor} ${
+          className={`w-full fixed z-50 ${shadowNav} ${backgroundColor} ${
             isOpen ? "bg-green-300" : ""
           } transition-all duration-100 ease-in-out`}
         >
@@ -126,30 +126,30 @@ function Navbar({ scroll = false }) {
             </div>
           </div>
         </nav>
-        {isOpen && (
-          <div className="h-screen w-full bg-green-100 p-7">
-            <ul className="flex flex-col gap-4 justify-center">
-              {links.map(({ name, href, icon }) => (
-                <li key={name}>
-                  <Link href={href}>
-                    <Button
-                      fullSized
-                      size="lg"
-                      color="none"
-                      className={`font-normal ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
-                      gradientDuoTone={
-                        pathname.includes(href) ? "greenToBlue" : ""
-                      }
-                    >
-                      {icon}
-                      <span className="drop-shadow-lg">{name}</span>
-                    </Button>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+      </div>
+      <div
+        className={`fixed h-screen w-screen bg-green-100 p-7 transition ease-in-out duration-300 z-40 ${
+          isOpen ? "translate-x-0" : "translate-x-96"
+        }`}
+      >
+        <ul className="flex flex-col gap-4 justify-center mt-32">
+          {links.map(({ name, href, icon }) => (
+            <li key={name}>
+              <Link href={href}>
+                <Button
+                  fullSized
+                  size="lg"
+                  color="none"
+                  className={`font-normal ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
+                  gradientDuoTone={pathname.includes(href) ? "greenToBlue" : ""}
+                >
+                  {icon}
+                  <span className="drop-shadow-lg">{name}</span>
+                </Button>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

@@ -3,9 +3,9 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/flowbite-react/**/*.js",
+    "./node_modules/flowbite-react/**/*.js"
   ],
-  plugins: [require("flowbite/plugin")],
+  plugins: [require("flowbite/plugin"), require("tailwindcss-animated")],
   theme: {
     extend: {
       backgroundColor: (theme) => ({
