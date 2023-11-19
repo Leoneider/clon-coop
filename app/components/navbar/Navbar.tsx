@@ -16,64 +16,78 @@ const links = [
   {
     name: "Sucursal Virtual",
     href: "/sucrusal-virtual",
-    icon: <LaptopChromebookIcon />,
+    icon: <LaptopChromebookIcon className="text-4xl" />,
   },
   {
     name: "Portal Transaccional",
     href: "/portal-transaccional",
-    icon: <AccountBoxIcon />,
+    icon: <AccountBoxIcon className="text-4xl" />,
   },
 ];
 
 function Navbar({ scrollHabilitado = false }) {
   const pathname = usePathname();
 
-  let textColor = scrollHabilitado ? "text-white" : "text-primary";
-  let logoImg = scrollHabilitado
+  let backgroundColor = scrollHabilitado
+    ? "text-white"
+    : "bg-white text-primary";
+  let logoImage = scrollHabilitado
     ? "/logo-vertical-coop.svg"
     : "/logo-vertical-coop-color.svg";
-  let shadow = scrollHabilitado ? "" : "shadow-lg bg-slate-100";
+  let shadowNav = scrollHabilitado ? "" : "shadow-lg bg-slate-100";
 
-  const [backgroundColor, setBackgroundColor] = useState(textColor);
-  const [shadowNav, setShadowNav] = useState(shadow);
-  const [logoImage, setLogoImage] = useState(logoImg);
+  const [navbarStyles, setNavbarStyles] = useState({
+    backgroundColor,
+    shadowNav,
+    logoImage,
+  });
 
-  const [isOpen, setOpen] = useState(false);
+  const [isOpenMenuMobile, setOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  const getChangeLogoNavBar = (y: number = 0) => {
+  const navbarColor = {
+    backgroundColor: "bg-white text-primary",
+    shadowNav: "shadow-lg bg-slate-100",
+    logoImage: "/logo-vertical-coop-color.svg",
+  };
+
+  const getChangeLogoNavBarScroll = (y: number = 0) => {
     if (Math.abs(y) > 70) {
-      setLogoImage("/logo-vertical-coop-color.svg");
-      setShadowNav("shadow-lg");
-      setBackgroundColor("bg-slate-100 text-primary");
+      setNavbarStyles(navbarColor);
     } else {
-      setLogoImage("/logo-vertical-coop.svg");
-      setShadowNav("");
-      setBackgroundColor(textColor);
+      setNavbarStyles({
+        backgroundColor: backgroundColor,
+        shadowNav: "",
+        logoImage: "/logo-vertical-coop.svg",
+      });
     }
   };
 
   const handleScroll = () => {
-    const currentElement = navRef.current;
-    const parent = currentElement?.parentElement;
+    if (scrollHabilitado) {
+      const currentElement = navRef.current;
+      const parent = currentElement?.parentElement;
 
-    if (parent && scrollHabilitado) {
-      const y = parent.getBoundingClientRect().y;
-      getChangeLogoNavBar(y);
+      if (parent) {
+        const y = parent.getBoundingClientRect().y;
+        getChangeLogoNavBarScroll(y);
+      }
     }
   };
+
   useEffect(() => {
-    getChangeLogoNavBar();
-    if (isOpen) {
+    if (isOpenMenuMobile) {
+      setNavbarStyles(navbarColor);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      handleScroll();
     }
 
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isOpen]);
+  }, [isOpenMenuMobile]);
 
   useEffect(() => {
     if (scrollHabilitado) {
@@ -88,9 +102,7 @@ function Navbar({ scrollHabilitado = false }) {
     <>
       <div className="relative" ref={navRef}>
         <nav
-          className={`w-full fixed z-50 ${shadowNav} ${backgroundColor} ${
-            isOpen ? "bg-green-300" : ""
-          } transition-all duration-100 ease-in-out`}
+          className={`w-full fixed z-50 ${navbarStyles.shadowNav} ${navbarStyles.backgroundColor} transition-all duration-100 ease-in-out`}
         >
           <div className="container mx-auto px-4">
             <div className="flex flex-row justify-between items-center py-4">
@@ -99,7 +111,7 @@ function Navbar({ scrollHabilitado = false }) {
                 className="transition-all duration-500 ease-in-out"
               >
                 <Image
-                  src={logoImage}
+                  src={navbarStyles.logoImage}
                   width={123}
                   height={83}
                   alt="Logo de la cooperativa"
@@ -129,40 +141,40 @@ function Navbar({ scrollHabilitado = false }) {
               </ul>
 
               <div className="lg:hidden">
-                <Spin toggled={isOpen} toggle={setOpen} />
+                <Spin toggled={isOpenMenuMobile} toggle={setOpen} />
               </div>
             </div>
           </div>
         </nav>
       </div>
-      <div className="overflow-y-hidden ">
-        <div
-          className={`fixed inset-0 h-screen w-screen bg-green-100 p-7 transition ease-in-out duration-300 z-40 lg:hidden ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          style={{ overflowY: "hidden" }}
-        >
-          <ul className="flex flex-col gap-4 justify-center mt-32">
-            {links.map(({ name, href, icon }) => (
-              <li key={name}>
-                <Link href={href}>
-                  <Button
-                    fullSized
-                    size="lg"
-                    color="none"
-                    className={`font-normal ring-transparent  hover:bg-gray-500 hover:bg-opacity-20`}
-                    gradientDuoTone={
-                      pathname.includes(href) ? "greenToBlue" : ""
-                    }
+
+      <div
+        className={`fixed inset-0 h-screen w-screen bg-teal-100 p-7 transition ease-in-out duration-300 z-40 lg:hidden 
+        ${isOpenMenuMobile ? "translate-x-0" : "translate-x-full"}`}
+      >
+        <ul className="grid grid-cols-2   gap-4 justify-center mt-32 ">
+          {links.map(({ name, href, icon }) => (
+            <li key={name}>
+              <Link href={href}>
+                <div
+                  className={`grid items-center bg-slate-50 p-2 h-20 max-h-full w-24 min-w-full text-xs shadow-md rounded-sm ${
+                    pathname.includes(href) && "bg-primary"
+                  }`}
+                >
+                  <div className="text-gray-300">{icon}</div>
+                  <p
+                    className={` ${
+                      pathname.includes(href) ? "text-white" : "text-gray-500"
+                    }`}
                   >
-                    {icon}
-                    <span className="drop-shadow-lg">{name}</span>
-                  </Button>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+                    {" "}
+                    {name}
+                  </p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );
