@@ -157,8 +157,8 @@ function Navbar({ scrollHabilitado = false }) {
             <li key={name}>
               <Link href={href}>
                 <div
-                  className={`grid items-center bg-slate-50 p-2 h-20 max-h-full w-24 min-w-full text-xs shadow-md rounded-sm ${
-                    pathname.includes(href) && "bg-primary"
+                  className={`grid items-center  p-2 h-20 max-h-full w-24 min-w-full text-xs shadow-md rounded-sm ${
+                    pathname.includes(href) ? "bg-primary" : "bg-slate-50"
                   }`}
                 >
                   <div className="text-gray-300">{icon}</div>
