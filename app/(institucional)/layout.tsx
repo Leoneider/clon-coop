@@ -14,14 +14,14 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <div className="h-44"></div>
+      <div className="h-32"></div>
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 px-7">
-          <div className="text-lg text-gray-500 md:col-span-2 font-light">
+        <div className="flex flex-wrap-reverse lg:flex-wrap  px-7 ">
+          <div className="text-lg text-gray-500 font-light lg:w-3/5">
             {children}
           </div>
 
-          <div>
+          <div className="w-40 min-w-min">
             <Aside></Aside>
           </div>
         </div>

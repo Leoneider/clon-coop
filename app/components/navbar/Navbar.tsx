@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { usePathname } from "next/navigation";
@@ -16,12 +16,12 @@ const links = [
   {
     name: "Sucursal Virtual",
     href: "/sucrusal-virtual",
-    icon: <LaptopChromebookIcon className="text-4xl" />,
+    icon: <LaptopChromebookIcon />,
   },
   {
     name: "Portal Transaccional",
     href: "/portal-transaccional",
-    icon: <AccountBoxIcon className="text-4xl" />,
+    icon: <AccountBoxIcon />,
   },
 ];
 
@@ -45,25 +45,31 @@ function Navbar({ scrollHabilitado = false }) {
   const [isOpenMenuMobile, setOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  const navbarColor = {
-    backgroundColor: "bg-white text-primary",
-    shadowNav: "shadow-lg bg-slate-100",
-    logoImage: "/logo-vertical-coop-color.svg",
-  };
+  const navbarColor = useMemo(
+    () => ({
+      backgroundColor: "bg-white text-primary",
+      shadowNav: "shadow-lg bg-slate-100",
+      logoImage: "/logo-vertical-coop-color.svg",
+    }),
+    []
+  );
 
-  const getChangeLogoNavBarScroll = (y: number = 0) => {
-    if (Math.abs(y) > 70) {
-      setNavbarStyles(navbarColor);
-    } else {
-      setNavbarStyles({
-        backgroundColor: backgroundColor,
-        shadowNav: "",
-        logoImage: "/logo-vertical-coop.svg",
-      });
-    }
-  };
+  const getChangeLogoNavBarScroll = useCallback(
+    (y: number = 0) => {
+      if (Math.abs(y) > 70) {
+        setNavbarStyles(navbarColor);
+      } else {
+        setNavbarStyles({
+          backgroundColor: backgroundColor,
+          shadowNav: "",
+          logoImage: "/logo-vertical-coop.svg",
+        });
+      }
+    },
+    [setNavbarStyles, navbarColor, backgroundColor]
+  );
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (scrollHabilitado) {
       const currentElement = navRef.current;
       const parent = currentElement?.parentElement;
@@ -73,21 +79,15 @@ function Navbar({ scrollHabilitado = false }) {
         getChangeLogoNavBarScroll(y);
       }
     }
-  };
+  }, [scrollHabilitado, getChangeLogoNavBarScroll]);
 
   useEffect(() => {
     if (isOpenMenuMobile) {
       setNavbarStyles(navbarColor);
-      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
       handleScroll();
     }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpenMenuMobile]);
+  }, [isOpenMenuMobile, navbarColor, handleScroll]);
 
   useEffect(() => {
     if (scrollHabilitado) {
@@ -100,7 +100,7 @@ function Navbar({ scrollHabilitado = false }) {
 
   return (
     <>
-      <div className="relative" ref={navRef}>
+      <div className="relative overflow-y-auto" ref={navRef}>
         <nav
           className={`w-full fixed z-50 ${navbarStyles.shadowNav} ${navbarStyles.backgroundColor} transition-all duration-100 ease-in-out`}
         >
@@ -167,7 +167,6 @@ function Navbar({ scrollHabilitado = false }) {
                       pathname.includes(href) ? "text-white" : "text-gray-500"
                     }`}
                   >
-                    {" "}
                     {name}
                   </p>
                 </div>

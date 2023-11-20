@@ -75,7 +75,7 @@ const theme = {
 
 function Aside() {
   return (
-    <div className="flex justify-end w-80 relative mt-16 pt-7">
+    <div className="flex justify-end w-80 relative my-7 lg:mt-16 lg:pt-7">
       <div className="asideDec"></div>
       <ListGroup className="mx-7">
         {links.map(({ link, path, icon }) => (
