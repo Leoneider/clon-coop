@@ -182,9 +182,30 @@ function Simulador() {
             </form>
           )}
           {hasSimulacion && (
-            <div className="mx-auto p-12 text-center">
-              <h1>Su cuota es de {valorCuota} </h1>
+            <div className="mx-auto text-center">
+              <p className="text-2xl font-bold">24 cuotas de</p>
+              <div className="border-2 py-2 border-green-500  rounded-tl-[70px] rounded-tr-[100px] rounded-br-[100px]">
+                <p className="text-4xl font-bold">{valorCuota}</p>
+                {/* <p className="font-semibold text-xs text-right pr-8">N.M.V</p> */}
+              </div>
+
+              <hr className="mt-4" />
+
+              <div className="flex justify-between text-left mt-4 whitespace-nowrap">
+                <div className="flex-1 mr-7">
+                  <p className="text-xs font-semibold">Valor del crédito</p>
+                  <p className="text-xs font-semibold">Tasa de interés</p>
+                  <p className="text-xs font-semibold">Plazo</p>
+                </div>
+                <div className="flex-1 text-right">
+                  <p className="text-xs font-semibold">$ {monto}</p>
+                  <p className="text-xs font-semibold">1.5%</p>
+                  <p className="text-xs font-semibold">24 meses</p>
+                </div>
+              </div>
+
               <Button
+                className="mt-7"
                 fullSized
                 onClick={() => {
                   setHasSimulacion(!hasSimulacion);
