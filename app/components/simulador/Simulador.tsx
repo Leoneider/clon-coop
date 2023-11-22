@@ -7,7 +7,7 @@ import {
   TextInput,
 } from "flowbite-react";
 import React, { useState } from "react";
-import { LiaMoneyCheckAltSolid } from "react-icons/lia";
+import { LiaMoneyCheckAltSolid, LiaWindowClose } from "react-icons/lia";
 import { useForm } from "../../hooks/useForm";
 
 import "./simulador.scss";
@@ -19,7 +19,7 @@ const calcularCredito = (formStarte: any) => {
 interface FormState {
   cedula: string;
   celular: string;
-  monto: string;
+  monto: number;
 }
 
 const formValidations = {
@@ -31,8 +31,25 @@ const formValidations = {
   monto: [(value: string) => value.length >= 1, "El nombre es obligatorio."],
 };
 
+const calcularCuotaPrestamo = (
+  monto: number,
+  tasaEfectivaMensual: number,
+  plazo: number
+) => {
+  const ipDecimal = tasaEfectivaMensual / 100;
+  const factor =
+    Math.pow(1 + ipDecimal, plazo) / (Math.pow(1 + ipDecimal, plazo) - 1);
+  let valorCuota = monto * ipDecimal * factor;
+
+  valorCuota = Math.ceil(valorCuota / 1000) * 1000;
+
+  return valorCuota;
+};
+
 function Simulador() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [hasSimulacion, setHasSimulacion] = useState(false);
+  const [valorCuota, setValorCuota] = useState(0);
 
   const { formState, onInputChange, formValidation, isFormValid } = useForm(
     {
@@ -56,7 +73,8 @@ function Simulador() {
 
     if (!isFormValid) return;
 
-    console.log("formState", formState);
+    setHasSimulacion(true);
+    setValorCuota(calcularCuotaPrestamo(monto, 1.5, 12));
   };
 
   return (
@@ -69,11 +87,11 @@ function Simulador() {
           </small>
         </div>
 
-        <div className="bg-white p-7 text-gray-600  border border-gray-200 rounded-se-md rounded-ee-md  sm:col-span-3">
-          <form onSubmit={onSubmit}>
-            <div className="flex justify-center gap-4">
-              <div className="max-w-sm">
-                <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="flex bg-white p-7 text-gray-600  border border-gray-200 rounded-se-md rounded-ee-md  sm:col-span-3">
+          {!hasSimulacion && (
+            <form onSubmit={onSubmit}>
+              <div className="flex flex-col justify-center">
+                <div className="flex flex-col lg:flex-row gap-4 mb-4">
                   <div>
                     <p className="mb-4 text-primary">Tu cedula</p>
                     <TextInput
@@ -114,14 +132,15 @@ function Simulador() {
                       }
                     />
                   </div>
-                  <div className="grid sm:hidden">
-                    <p className="mb-4 text-primary">¿Cuánto necesitas?</p>
+                  <div>
+                    <p className="mb-4 text-primary w-52 min-w-min">
+                      ¿Cuánto necesitas?
+                    </p>
                     <TextInput
                       id="monto"
                       type="number"
                       placeholder="Ingresa el valor"
                       icon={LiaMoneyCheckAltSolid}
-                      className="mb-4"
                       name="monto"
                       value={monto}
                       onChange={onInputChange}
@@ -135,62 +154,46 @@ function Simulador() {
                         )
                       }
                     />
-                    <div className="flex items-center mb-4">
-                      <Checkbox id="promotion" />
-                      <Label
-                        className="text-xs pl-2 text-gray-600 font-normal"
-                        htmlFor="promotion"
-                      >
-                        Acepto que Crediservir utilice mis datos para crear una
-                        experiencia personalizada de mi solicitud.
-                      </Label>
-                    </div>
+                  </div>
+                </div>
 
-                    <Button gradientMonochrome="success" type="submit">
+                <div className="flex flex-col lg:flex-row">
+                  <div className="flex items-center mb-4">
+                    <Checkbox id="promotion" />
+                    <Label
+                      className="text-xs pl-2 text-gray-600 font-normal"
+                      htmlFor="promotion"
+                    >
+                      Acepto que Crediservir utilice mis datos para crear una
+                      experiencia personalizada de mi solicitud.
+                    </Label>
+                  </div>
+                  <div className="flex justify-center ">
+                    <Button
+                      gradientMonochrome="success"
+                      type="submit"
+                      className="h-10 w-32 min-w-max"
+                    >
                       Simular
                     </Button>
                   </div>
                 </div>
-
-                <div className="items-center gap-2 hidden sm:flex">
-                  <Checkbox id="promotion" />
-                  <Label
-                    className="text-xs text-gray-600 font-normal"
-                    htmlFor="promotion"
-                  >
-                    Acepto que Crediservir utilice mis datos para crear una
-                    experiencia personalizada de mi solicitud.
-                  </Label>
-                </div>
               </div>
-
-              <div className="hidden sm:block">
-                <p className="mb-4 text-primary">¿Cuánto necesitas?</p>
-                <TextInput
-                  id="monto"
-                  type="number"
-                  placeholder="Ingresa el valor"
-                  icon={LiaMoneyCheckAltSolid}
-                  className="mb-4"
-                  name="monto"
-                  value={monto}
-                  onChange={onInputChange}
-                  color={!!montoValid && formSubmitted ? "failure" : ""}
-                  helperText={
-                    !!montoValid &&
-                    formSubmitted && (
-                      <>
-                        <span className="font-medium">{montoValid}</span>
-                      </>
-                    )
-                  }
-                />
-                <Button gradientMonochrome="success" type="submit">
-                  Simular
-                </Button>
-              </div>
+            </form>
+          )}
+          {hasSimulacion && (
+            <div className="mx-auto p-12 text-center">
+              <h1>Su cuota es de {valorCuota} </h1>
+              <Button
+                fullSized
+                onClick={() => {
+                  setHasSimulacion(!hasSimulacion);
+                }}
+              >
+                Volver a calcular
+              </Button>
             </div>
-          </form>
+          )}
         </div>
       </div>
     </div>
