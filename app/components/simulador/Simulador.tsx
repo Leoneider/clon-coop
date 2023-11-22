@@ -11,10 +11,12 @@ import { LiaMoneyCheckAltSolid, LiaWindowClose } from "react-icons/lia";
 import { useForm } from "../../hooks/useForm";
 
 import "./simulador.scss";
-
-const calcularCredito = (formStarte: any) => {
-  console.log("calcular credito", JSON.stringify(formStarte));
-};
+import Money from "../utils/Money";
+import {
+  NumericFormat,
+  numericFormatter,
+  removeNumericFormat,
+} from "react-number-format";
 
 interface FormState {
   cedula: string;
@@ -73,8 +75,16 @@ function Simulador() {
 
     if (!isFormValid) return;
 
+    let montoString = monto.toString();
+
     setHasSimulacion(true);
-    setValorCuota(calcularCuotaPrestamo(monto, 1.5, 12));
+    setValorCuota(
+      calcularCuotaPrestamo(
+        Number(montoString.split(".").join("").split("$").join("")),
+        1.5,
+        12
+      )
+    );
   };
 
   return (
@@ -136,9 +146,31 @@ function Simulador() {
                     <p className="mb-4 text-primary w-52 min-w-min">
                       ¿Cuánto necesitas?
                     </p>
-                    <TextInput
+
+                    <NumericFormat
                       id="monto"
-                      type="number"
+                      value={monto}
+                      onChange={(values) => onInputChange(values)}
+                      prefix={"$"}
+                      customInput={TextInput}
+                      name="monto"
+                      placeholder="Ingresa el valor"
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      color={!!montoValid && formSubmitted ? "failure" : ""}
+                      helperText={
+                        !!montoValid &&
+                        formSubmitted && (
+                          <>
+                            <span className="font-medium">{montoValid}</span>
+                          </>
+                        )
+                      }
+                    />
+
+                    {/* <TextInput
+                      id="monto"
+                      type="string"
                       placeholder="Ingresa el valor"
                       icon={LiaMoneyCheckAltSolid}
                       name="monto"
@@ -153,7 +185,7 @@ function Simulador() {
                           </>
                         )
                       }
-                    />
+                    /> */}
                   </div>
                 </div>
 
@@ -182,11 +214,15 @@ function Simulador() {
             </form>
           )}
           {hasSimulacion && (
-            <div className="mx-auto text-center">
-              <p className="text-2xl font-bold">24 cuotas de</p>
-              <div className="border-2 py-2 border-green-500  rounded-tl-[70px] rounded-tr-[100px] rounded-br-[100px]">
-                <p className="text-4xl font-bold">{valorCuota}</p>
-                {/* <p className="font-semibold text-xs text-right pr-8">N.M.V</p> */}
+            <div className="mx-auto text-center text-slate-500 border border-slate-300 rounded p-3">
+              <p className="text-2xl font-semibold mb-1">
+                {" "}
+                <span>24</span> cuotas de
+              </p>
+              <div className="border-2 py-2 border-green-300  rounded-tl-[70px] rounded-tr-[100px] rounded-br-[100px]">
+                <p className="text-4xl px-3 font-bold bg-gradient-to-r from-green-500 to-blue-500 text-transparent bg-clip-text">
+                  {Money(valorCuota)}
+                </p>
               </div>
 
               <hr className="mt-4" />
@@ -198,7 +234,7 @@ function Simulador() {
                   <p className="text-xs font-semibold">Plazo</p>
                 </div>
                 <div className="flex-1 text-right">
-                  <p className="text-xs font-semibold">$ {monto}</p>
+                  <p className="text-xs font-semibold">{Money(monto)}</p>
                   <p className="text-xs font-semibold">1.5%</p>
                   <p className="text-xs font-semibold">24 meses</p>
                 </div>
