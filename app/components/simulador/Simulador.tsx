@@ -82,6 +82,12 @@ function Simulador() {
 
     setHasSimulacion(true);
     setValorCuotas(cuotas);
+
+    // Redirect to element with ID "resultadoSimulacion"
+    const element = document.getElementById("resultadoSimulacion");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -199,14 +205,17 @@ function Simulador() {
               </div>
             </form>
           )}
-          {hasSimulacion &&
-            valorCuotas.map((valorCuota, idx) => (
-              <ResultadoSimulacion
-                key={valorCuota.plazo}
-                {...valorCuota}
-                animation={animations[idx]}
-              />
-            ))}
+          {hasSimulacion && (
+            <div id="resultadoSimulacion">
+              {valorCuotas.map((valorCuota, idx) => (
+                <ResultadoSimulacion
+                  key={valorCuota.plazo}
+                  {...valorCuota}
+                  animation={animations[idx]}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
