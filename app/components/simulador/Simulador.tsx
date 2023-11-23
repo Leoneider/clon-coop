@@ -106,7 +106,7 @@ function Simulador() {
 
         <div
           id="prueba"
-          className="flex bg-white p-7 text-gray-600  sm:col-span-3"
+          className="flex bg-white p-7 text-gray-600  sm:col-span-3 overflow-x-auto"
         >
           {!hasSimulacion && (
             <form onSubmit={onSubmit} className="animate-fade">
