@@ -86,18 +86,17 @@ function Simulador() {
     // Redirect to element with ID "resultadoSimulacion"
     const element = document.getElementById("prueba");
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "nearest",
-      });
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
   return (
-    <div id="prueba" className="container mx-auto 2xl:px-24 pb-12 sm:pt-12">
+    <div className="container mx-auto 2xl:px-24 pb-12 sm:pt-12">
       <div className="grid grid-cols-1 sm:grid-cols-5">
-        <div className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-2 general-box relative ">
+        <div
+          id="prueba"
+          className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-2 general-box relative "
+        >
           <p className="text-2xl">¿Necesitas un crédito?</p>
           <small className="text-base font-light">
             Desde $250.000 hasta $100.000.000
