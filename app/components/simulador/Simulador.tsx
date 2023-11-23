@@ -84,9 +84,13 @@ function Simulador() {
     setValorCuotas(cuotas);
 
     // Redirect to element with ID "resultadoSimulacion"
-    const element = document.getElementById("resultadoSimulacion");
+    const element = document.getElementById("prueba");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
     }
   };
 
@@ -100,7 +104,10 @@ function Simulador() {
           </small>
         </div>
 
-        <div className="flex bg-white p-7 text-gray-600  sm:col-span-3">
+        <div
+          id="prueba"
+          className="flex bg-white p-7 text-gray-600  sm:col-span-3"
+        >
           {!hasSimulacion && (
             <form onSubmit={onSubmit} className="animate-fade">
               <div className="flex flex-col justify-center">
@@ -206,7 +213,7 @@ function Simulador() {
             </form>
           )}
           {hasSimulacion && (
-            <div id="resultadoSimulacion">
+            <div id="resultadoSimulacion" className="flex">
               {valorCuotas.map((valorCuota, idx) => (
                 <ResultadoSimulacion
                   key={valorCuota.plazo}
