@@ -95,7 +95,7 @@ function Simulador() {
   };
 
   return (
-    <div className="container mx-auto 2xl:px-24 pb-12 sm:pt-12">
+    <div id="prueba" className="container mx-auto 2xl:px-24 pb-12 sm:pt-12">
       <div className="grid grid-cols-1 sm:grid-cols-5">
         <div className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-2 general-box relative ">
           <p className="text-2xl">¿Necesitas un crédito?</p>
@@ -104,10 +104,7 @@ function Simulador() {
           </small>
         </div>
 
-        <div
-          id="prueba"
-          className="flex bg-white p-7 text-gray-600  sm:col-span-3 overflow-x-auto"
-        >
+        <div className="flex bg-white p-7 text-gray-600  sm:col-span-3 overflow-x-auto">
           {!hasSimulacion && (
             <form onSubmit={onSubmit} className="animate-fade">
               <div className="flex flex-col justify-center">
@@ -213,7 +210,7 @@ function Simulador() {
             </form>
           )}
           {hasSimulacion && (
-            <div id="resultadoSimulacion" className="flex">
+            <div id="resultadoSimulacion" className="flex gap-3">
               {valorCuotas.map((valorCuota, idx) => (
                 <ResultadoSimulacion
                   key={valorCuota.plazo}
