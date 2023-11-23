@@ -108,7 +108,7 @@ function Simulador() {
                       name="cedula"
                       value={cedula}
                       onChange={onInputChange}
-                      sizing="md"
+                      sizing="lg"
                       color={!!cedulaValid && formSubmitted ? "failure" : ""}
                       helperText={
                         !!cedulaValid &&
