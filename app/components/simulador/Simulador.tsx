@@ -1,27 +1,16 @@
 "use client";
-import {
-  Button,
-  Checkbox,
-  FloatingLabel,
-  Label,
-  TextInput,
-} from "flowbite-react";
+import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
-import { LiaMoneyCheckAltSolid, LiaWindowClose } from "react-icons/lia";
 import { useForm } from "../../hooks/useForm";
-
 import "./simulador.scss";
-import Money from "../utils/Money";
-import {
-  NumericFormat,
-  numericFormatter,
-  removeNumericFormat,
-} from "react-number-format";
+import { NumericFormat } from "react-number-format";
+import { IResult } from "./models/IResult";
+import ResultadoSimulacion from "./components/ResultadoSimulacion";
 
 interface FormState {
   cedula: string;
   celular: string;
-  monto: number;
+  monto: number | null;
 }
 
 const formValidations = {
@@ -30,35 +19,47 @@ const formValidations = {
     (value: string) => value.length >= 1,
     "El número de cedula es obligatorio.",
   ],
-  monto: [(value: string) => value.length >= 1, "El nombre es obligatorio."],
+  monto: [(value: string) => value?.length >= 1, "El nombre es obligatorio."],
 };
 
-const calcularCuotaPrestamo = (
+const initialFormState: FormState = {
+  cedula: "",
+  celular: "",
+  monto: null,
+};
+
+const calcularCuotasPrestamo = (
   monto: number,
   tasaEfectivaMensual: number,
-  plazo: number
-) => {
+  plazo = [12, 24, 36]
+): IResult[] => {
   const ipDecimal = tasaEfectivaMensual / 100;
-  const factor =
-    Math.pow(1 + ipDecimal, plazo) / (Math.pow(1 + ipDecimal, plazo) - 1);
-  let valorCuota = monto * ipDecimal * factor;
-
-  valorCuota = Math.ceil(valorCuota / 1000) * 1000;
-
-  return valorCuota;
+  return plazo.map((plazo) => {
+    const factor =
+      Math.pow(1 + ipDecimal, plazo) / (Math.pow(1 + ipDecimal, plazo) - 1);
+    let valorCuota = monto * ipDecimal * factor;
+    return {
+      plazo,
+      valorCuota: Math.ceil(valorCuota / 1000) * 1000,
+      tasaEfectivaMensual,
+      monto,
+    };
+  });
 };
+
+const animations = [
+  "animate-fade-left",
+  "animate-fade-left animate-delay-200",
+  "animate-fade-left animate-delay-300",
+];
 
 function Simulador() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [hasSimulacion, setHasSimulacion] = useState(false);
-  const [valorCuota, setValorCuota] = useState(0);
+  const [valorCuotas, setValorCuotas] = useState<IResult[]>([]);
 
   const { formState, onInputChange, formValidation, isFormValid } = useForm(
-    {
-      cedula: "",
-      celular: "",
-      monto: "",
-    },
+    initialFormState,
     formValidations
   );
 
@@ -75,31 +76,27 @@ function Simulador() {
 
     if (!isFormValid) return;
 
-    let montoString = monto.toString();
+    console.log("monto --->", monto);
+
+    let cuotas = calcularCuotasPrestamo(monto!, 1.5);
 
     setHasSimulacion(true);
-    setValorCuota(
-      calcularCuotaPrestamo(
-        Number(montoString.split(".").join("").split("$").join("")),
-        1.5,
-        12
-      )
-    );
+    setValorCuotas(cuotas);
   };
 
   return (
-    <div className="container mx-auto xl:px-56 pb-12 sm:pt-12">
+    <div className="container mx-auto 2xl:px-24 pb-12 sm:pt-12">
       <div className="grid grid-cols-1 sm:grid-cols-5">
-        <div className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-2 general-box relative">
+        <div className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-2 general-box relative ">
           <p className="text-2xl">¿Necesitas un crédito?</p>
           <small className="text-base font-light">
             Desde $250.000 hasta $100.000.000
           </small>
         </div>
 
-        <div className="flex bg-white p-7 text-gray-600  border border-gray-200 rounded-se-md rounded-ee-md  sm:col-span-3">
+        <div className="flex bg-white p-7 text-gray-600  sm:col-span-3">
           {!hasSimulacion && (
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="animate-fade">
               <div className="flex flex-col justify-center">
                 <div className="flex flex-col lg:flex-row gap-4 mb-4">
                   <div>
@@ -111,6 +108,7 @@ function Simulador() {
                       name="cedula"
                       value={cedula}
                       onChange={onInputChange}
+                      sizing="md"
                       color={!!cedulaValid && formSubmitted ? "failure" : ""}
                       helperText={
                         !!cedulaValid &&
@@ -131,6 +129,7 @@ function Simulador() {
                       name="celular"
                       value={celular}
                       onChange={onInputChange}
+                      sizing="lg"
                       color={!!celularValid && formSubmitted ? "failure" : ""}
                       helperText={
                         !!celularValid &&
@@ -150,14 +149,20 @@ function Simulador() {
                     <NumericFormat
                       id="monto"
                       value={monto}
-                      onChange={(values) => onInputChange(values)}
+                      onValueChange={({ value }) => {
+                        onInputChange({
+                          target: { name: "monto", value: value },
+                        });
+                      }}
                       prefix={"$"}
                       customInput={TextInput}
                       name="monto"
                       placeholder="Ingresa el valor"
                       thousandSeparator="."
                       decimalSeparator=","
+                      decimalScale={0}
                       color={!!montoValid && formSubmitted ? "failure" : ""}
+                      sizing={"lg"}
                       helperText={
                         !!montoValid &&
                         formSubmitted && (
@@ -167,25 +172,6 @@ function Simulador() {
                         )
                       }
                     />
-
-                    {/* <TextInput
-                      id="monto"
-                      type="string"
-                      placeholder="Ingresa el valor"
-                      icon={LiaMoneyCheckAltSolid}
-                      name="monto"
-                      value={monto}
-                      onChange={onInputChange}
-                      color={!!montoValid && formSubmitted ? "failure" : ""}
-                      helperText={
-                        !!montoValid &&
-                        formSubmitted && (
-                          <>
-                            <span className="font-medium">{montoValid}</span>
-                          </>
-                        )
-                      }
-                    /> */}
                   </div>
                 </div>
 
@@ -213,44 +199,14 @@ function Simulador() {
               </div>
             </form>
           )}
-          {hasSimulacion && (
-            <div className="mx-auto text-center text-slate-500 border border-slate-300 rounded p-3">
-              <p className="text-2xl font-semibold mb-1">
-                {" "}
-                <span>24</span> cuotas de
-              </p>
-              <div className="border-2 py-2 border-green-300  rounded-tl-[70px] rounded-tr-[100px] rounded-br-[100px]">
-                <p className="text-4xl px-3 font-bold bg-gradient-to-r from-green-500 to-blue-500 text-transparent bg-clip-text">
-                  {Money(valorCuota)}
-                </p>
-              </div>
-
-              <hr className="mt-4" />
-
-              <div className="flex justify-between text-left mt-4 whitespace-nowrap">
-                <div className="flex-1 mr-7">
-                  <p className="text-xs font-semibold">Valor del crédito</p>
-                  <p className="text-xs font-semibold">Tasa de interés</p>
-                  <p className="text-xs font-semibold">Plazo</p>
-                </div>
-                <div className="flex-1 text-right">
-                  <p className="text-xs font-semibold">{Money(monto)}</p>
-                  <p className="text-xs font-semibold">1.5%</p>
-                  <p className="text-xs font-semibold">24 meses</p>
-                </div>
-              </div>
-
-              <Button
-                className="mt-7"
-                fullSized
-                onClick={() => {
-                  setHasSimulacion(!hasSimulacion);
-                }}
-              >
-                Volver a calcular
-              </Button>
-            </div>
-          )}
+          {hasSimulacion &&
+            valorCuotas.map((valorCuota, idx) => (
+              <ResultadoSimulacion
+                key={valorCuota.plazo}
+                {...valorCuota}
+                animation={animations[idx]}
+              />
+            ))}
         </div>
       </div>
     </div>
