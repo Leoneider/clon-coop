@@ -3,9 +3,10 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import "./simulador.scss";
-import { NumericFormat } from "react-number-format";
+import { NumberFormatValues, NumericFormat } from "react-number-format";
 import { IResult } from "./models/IResult";
 import ResultadoSimulacion from "./components/ResultadoSimulacion";
+import MoneyInput from "../money-input/MoneyInput";
 
 interface FormState {
   cedula: string;
@@ -49,8 +50,8 @@ const calcularCuotasPrestamo = (
 
 const animations = [
   "animate-fade-left",
-  "animate-fade-left animate-delay-200 hidden lg:block",
-  "animate-fade-left animate-delay-300 hidden lg:block",
+  "animate-fade-left animate-delay-200 hidden sm:block",
+  "animate-fade-left animate-delay-300 hidden xl:block",
 ];
 
 function Simulador() {
@@ -90,11 +91,11 @@ function Simulador() {
   };
 
   return (
-    <div className="container mx-auto 2xl:px-16 pb-12 sm:pt-12">
+    <div className="lg:container mx-auto 2xl:px-16 pb-12 lg:pt-12">
       <div className="grid grid-cols-1  lg:grid-cols-12">
         <div
           id="prueba"
-          className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-4 general-box relative "
+          className="bg-gradient-to-r mb-7 lg:mb-0 from-green-500 to-green-700 p-7 lg:p-14 text-gray-200 lg:rounded-ss-md lg:rounded-es-md lg:col-span-4 general-box relative "
         >
           <p className="text-2xl">¿Necesitas un crédito?</p>
           <small className="text-base font-light">
@@ -102,11 +103,11 @@ function Simulador() {
           </small>
         </div>
 
-        <div className="flex lg:justify-center bg-white p-7 text-gray-600  sm:col-span-8 overflow-x-auto">
+        <div className="flex justify-center bg-white px-7 text-gray-600  lg:col-span-8 overflow-x-hidden">
           {!hasSimulacion && (
             <form onSubmit={onSubmit} className="animate-fade">
               <div className="flex flex-col justify-center">
-                <div className="flex flex-col lg:flex-row gap-4 mb-4">
+                <div className="flex justify-around flex-col lg:flex-row gap-4 mb-4">
                   <div>
                     <p className="mb-4 text-primary">Tu cedula</p>
                     <TextInput
@@ -154,21 +155,15 @@ function Simulador() {
                       ¿Cuánto necesitas?
                     </p>
 
-                    <NumericFormat
+                    <MoneyInput
                       id="monto"
                       value={monto}
-                      onValueChange={({ value }) => {
+                      onValueChange={({ value }: NumberFormatValues) =>
                         onInputChange({
                           target: { name: "monto", value: value },
-                        });
-                      }}
-                      prefix={"$"}
-                      customInput={TextInput}
-                      name="monto"
+                        })
+                      }
                       placeholder="Ingresa el valor"
-                      thousandSeparator="."
-                      decimalSeparator=","
-                      decimalScale={0}
                       color={!!montoValid && formSubmitted ? "failure" : ""}
                       sizing={"lg"}
                       helperText={
@@ -183,7 +178,7 @@ function Simulador() {
                   </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row">
+                <div className="flex flex-col gap-4 lg:flex-row">
                   <div className="flex items-center mb-4">
                     <Checkbox id="promotion" />
                     <Label
