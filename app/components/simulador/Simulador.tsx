@@ -49,8 +49,8 @@ const calcularCuotasPrestamo = (
 
 const animations = [
   "animate-fade-left",
-  "animate-fade-left animate-delay-200",
-  "animate-fade-left animate-delay-300",
+  "animate-fade-left animate-delay-200 hidden lg:block",
+  "animate-fade-left animate-delay-300 hidden lg:block",
 ];
 
 function Simulador() {
@@ -83,7 +83,6 @@ function Simulador() {
     setHasSimulacion(true);
     setValorCuotas(cuotas);
 
-    // Redirect to element with ID "resultadoSimulacion"
     const element = document.getElementById("prueba");
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -91,11 +90,11 @@ function Simulador() {
   };
 
   return (
-    <div className="container mx-auto 2xl:px-24 pb-12 sm:pt-12">
-      <div className="grid grid-cols-1 sm:grid-cols-5">
+    <div className="container mx-auto 2xl:px-16 pb-12 sm:pt-12">
+      <div className="grid grid-cols-1  lg:grid-cols-12">
         <div
           id="prueba"
-          className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-2 general-box relative "
+          className="bg-gradient-to-r from-green-500 to-green-700 p-7 sm:p-14 text-gray-200 sm:rounded-ss-md sm:rounded-es-md sm:col-span-4 general-box relative "
         >
           <p className="text-2xl">¿Necesitas un crédito?</p>
           <small className="text-base font-light">
@@ -103,7 +102,7 @@ function Simulador() {
           </small>
         </div>
 
-        <div className="flex bg-white p-7 text-gray-600  sm:col-span-3 overflow-x-auto">
+        <div className="flex lg:justify-center bg-white p-7 text-gray-600  sm:col-span-8 overflow-x-auto">
           {!hasSimulacion && (
             <form onSubmit={onSubmit} className="animate-fade">
               <div className="flex flex-col justify-center">
@@ -209,7 +208,7 @@ function Simulador() {
             </form>
           )}
           {hasSimulacion && (
-            <div id="resultadoSimulacion" className="flex gap-3">
+            <div id="resultadoSimulacion" className="flex gap-3 w-full">
               {valorCuotas.map((valorCuota, idx) => (
                 <ResultadoSimulacion
                   key={valorCuota.plazo}

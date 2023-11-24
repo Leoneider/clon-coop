@@ -14,7 +14,7 @@ function ResultadoSimulacion({
   return (
     <>
       <div
-        className={`mx-auto text-center text-slate-500 border border-slate-300 rounded p-3 ${animation}`}
+        className={`mx-auto text-center w-full text-slate-500 border border-slate-300 rounded p-3 ${animation}`}
       >
         <p className="text-2xl font-semibold mb-1">
           <span>24</span> cuotas de
