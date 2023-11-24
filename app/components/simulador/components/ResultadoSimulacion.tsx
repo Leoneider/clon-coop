@@ -9,6 +9,8 @@ interface IResultadoSimulacionAnimation extends IResult {
 function ResultadoSimulacion({
   valorCuota,
   monto,
+  plazo,
+  tasaEfectivaMensual,
   animation,
 }: IResultadoSimulacionAnimation) {
   return (
@@ -17,7 +19,7 @@ function ResultadoSimulacion({
         className={`mx-auto text-center w-full text-slate-500 border border-slate-300 rounded p-3 ${animation}`}
       >
         <p className="text-2xl font-semibold mb-1">
-          <span>24</span> cuotas de
+          <span>{plazo}</span> cuotas de
         </p>
         <div className="border-2 py-2 border-green-300  rounded-tl-[70px] rounded-tr-[100px] rounded-br-[100px]">
           <p className="text-4xl px-3 font-bold bg-gradient-to-r from-green-500 to-blue-500 text-transparent bg-clip-text">
@@ -35,8 +37,10 @@ function ResultadoSimulacion({
           </div>
           <div className="flex-1 text-right">
             <p className="text-xs font-semibold">{Money(monto)}</p>
-            <p className="text-xs font-semibold">1.5%</p>
-            <p className="text-xs font-semibold">24 meses</p>
+            <p className="text-xs font-semibold">
+              {tasaEfectivaMensual}% N.M.V
+            </p>
+            <p className="text-xs font-semibold">{plazo} meses</p>
           </div>
         </div>
       </div>
